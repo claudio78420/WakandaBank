@@ -95,6 +95,65 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Compte` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `WakandaBank`.`Types_modif`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `WakandaBank`.`Types_modif` ;
+
+CREATE TABLE IF NOT EXISTS `WakandaBank`.`Types_modif` (
+  `idmodif` INT NOT NULL AUTO_INCREMENT,
+  `libelle` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idmodif`))
+ENGINE = InnoDB;
+
+INSERT INTO `wakandabank`.`Types_modif` (`idmodif`, `libelle`) VALUES ('1', 'Solde'), ('2', 'Plafond de Découvert'), ('3', 'Nom'), ('4', 'Mot de passe'), ('5', 'Avatar');
+
+
+-- -----------------------------------------------------
+-- Table `WakandaBank`.`Historique_chiffres`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `WakandaBank`.`Historique_chiffres` ;
+
+CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
+  `idchiffres` INT NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  `ancien` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  `nouveau` DECIMAL(10,2) NOT NULL DEFAULT 0,
+  `idmodif` INT NOT NULL,
+  `idcompte` INT NOT NULL,
+  PRIMARY KEY (`idchiffres`),
+  CONSTRAINT `fk_HistoriqueChiffres_Type`
+    FOREIGN KEY (`idmodif`)
+    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`))
+ENGINE = InnoDB;
+
+ALTER TABLE `WakandaBank`.`Historique_chiffres`
+  ADD FOREIGN KEY `fk_HistoriqueChiffres_Compte` (`idcompte`)
+      REFERENCES `WakandaBank`.`Compte` (`idcompte`) ;
+
+
+-- -----------------------------------------------------
+-- Table `WakandaBank`.`Historique_profils`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `WakandaBank`.`Historique_profils` ;
+
+CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_profils` (
+  `idprofilss` INT NOT NULL AUTO_INCREMENT,
+  `date` DATE NOT NULL,
+  `ancien` VARCHAR(45) NOT NULL DEFAULT 0,
+  `nouveau` VARCHAR(45) NOT NULL DEFAULT 0,
+  `idmodif` INT NOT NULL,
+  `idcompte` INT NOT NULL,
+  PRIMARY KEY (`idchiffres`),
+  CONSTRAINT `fk_HistoriqueProfil_Type`
+    FOREIGN KEY (`idmodif`)
+    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
+  CONSTRAINT `fk_HistoriqueProfil_Compte`
+    FOREIGN KEY (`idcompte`)
+    REFERENCES `WakandaBank`.`Compte` (`idcompte`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
