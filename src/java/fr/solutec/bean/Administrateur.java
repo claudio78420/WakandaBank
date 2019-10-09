@@ -7,7 +7,7 @@ package fr.solutec.bean;
 
 /**
  *
- * @author stagiaire
+ * @author TLeMet
  */
 public class Administrateur {
     
@@ -15,17 +15,17 @@ public class Administrateur {
     private String nom;
     private String prenom;
     private String mail;
-    private String mdp;
+    private String password;
 
     public Administrateur() {
     }
 
-    public Administrateur(int id, String nom, String prenom, String mail, String mdp) {
+    public Administrateur(int id, String nom, String prenom, String mail, String password) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
-        this.mdp = mdp;
+        this.password = password;
     }
 
     public int getId() {
@@ -60,16 +60,16 @@ public class Administrateur {
         this.mail = mail;
     }
 
-    public String getMdp() {
-        return mdp;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String toString() {
-        return "Administrateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + '}';
+        return "Administrateur{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + '}';
     }
 }
