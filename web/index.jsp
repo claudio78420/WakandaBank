@@ -32,7 +32,7 @@
       <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
         <a class="navbar-brand" href="#">
             <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                Navbar 
+                Wakanda Bank
             </button>
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -68,7 +68,8 @@
       </nav>
         
         <div class="container text-center" style="background-color: white">
-        <h1>Hello World!</h1>
+        <br>
+        <br>
             <div class="row">
                 <div class="col-sm-6">
                     <!-- Définir la colonne 1 ici -->
@@ -88,6 +89,24 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
+                    <div class="col d-flex justify-content-center">
+                        <div class="card text-center" style="width: 18rem;
+                             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                            <img src="https://image.freepik.com/vecteurs-libre/fond-ornemental-luxe-noir-or_1017-20607.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Wakanda World</h5>
+                                <p class="card-text">Découvrez l'actualité du Wakanda.</p>
+                            </div>
+                            <div class="card-body">
+                                <button type='button' class ='btn btn-outline-dark'
+                                        style="color:black">
+                                    Accéder
+                                </button>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
                 <div class="col-sm-6">
                     <!-- Définir la colonne 2 ici -->
@@ -107,9 +126,30 @@
                             </div>
                         </div>
                     </div>
+                    <br>
+                    <br>
+                    <div class="col d-flex justify-content-center">
+                        <div class="card text-center" style="width: 18rem;
+                             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                            <img src="https://image.freepik.com/vecteurs-libre/fond-ornemental-luxe-noir-or_1017-20607.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Wakanda World</h5>
+                                <p class="card-text">Découvrez l'actualité du Wakanda.</p>
+                            </div>
+                            <div class="card-body">
+                                <button type='button' class ='btn btn-outline-dark'
+                                        style="color:black">
+                                    Accéder
+                                </button>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
+            <br>
+            <br>
         </div>
+        
 
     </body>
 </html>
