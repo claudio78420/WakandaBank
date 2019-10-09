@@ -37,7 +37,7 @@ public class CompteDao {
     
     public static Boolean isCompteUnique(int compte, int carte) throws SQLException {
         Boolean check = true;
-        String sql = "SELECT COUNT(*) AS total FROM Compte where (idcompte=? OR idcarte=?)";
+        String sql = "SELECT COUNT(*) AS total FROM Compte WHERE (idcompte=? OR idcarte=?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql);
         requette.setString(1, Integer.toString(compte));
@@ -48,28 +48,22 @@ public class CompteDao {
         }
         return check;
     }
-
-    public static List<Client> getAllClients() throws SQLException {
-        List<Client> result = new ArrayList<>();
-
-        String sql = "SELECT * FROM Client";
+    
+    public static void switchCarte(Compte compte) throws SQLException {
+        String sql_interro = "SELECT statutcarte AS status FROM Compte WHERE idcompte=?";
         Connection connexion = AccessBD.getConnection();
-
-        Statement requette = connexion.createStatement();
-
-        ResultSet rs = requette.executeQuery(sql);
-
-        while (rs.next()) {
-            Client u = new Client();
-            u.setId(rs.getInt("idclient"));
-            u.setNom(rs.getString("nomclient"));
-            u.setPrenom(rs.getString("prenomclient"));
-            u.setMail(rs.getString("mailclient"));
-
-            result.add(u);
+        PreparedStatement interro = connexion.prepareStatement(sql_interro);
+        interro.setString(1, Integer.toString(compte.getId()));
+        ResultSet rs = interro.executeQuery();
+        String new_status = "";
+        if (rs.getBoolean("status")){
+            new_status = "FALSE";
+        }else{
+            new_status = "TRUE"; 
         }
-
-        return result;
+        String sql_swap = "UPDATE Compte SET statuscarte=? WHERE idcompte=?";
+        PreparedStatement swap = connexion.prepareStatement(sql_swap);
+        interro.setString(1, new_status);
+        interro.setString(2, Integer.toString(compte.getId()));        
     }
-
 }
