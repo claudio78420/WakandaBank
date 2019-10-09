@@ -39,7 +39,7 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="accueil">
+            <a class="nav-item nav-link active" href="">
                 <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
                     Accueil 
                 </button>
