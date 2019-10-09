@@ -31,37 +31,28 @@
     </head>
     <body>
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="Ressources/unibanana.jpg" width="5%" border="25">
-          <a class="navbar-brand" href="#">Espace Client</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="accueil">
-                    <button onclick="location.href='deco'" class="btn btn-primary">Accueil</button>
-                    <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="membre">
-                    <button onclick="location.href='deco'" class="btn btn-primary">Membres</button>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <button onclick="location.href='deco'" class="btn btn-primary">Pricing</button>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <button onclick="location.href='deco'" class="btn btn-primary">Déconnexion</button>
-                </a>
-              </li>
-            </ul>
+      <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
+        <a class="navbar-brand" href="#">
+            <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+                Wakanda Bank
+            </button>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="">
+                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+                    Accueil 
+                </button>
+                <span class="sr-only">(current)</span>
+            </a>
+
+
+
+
+
           </div>
-        </nav>
+        </div>
+      </nav>
 
     </body>
 </html>

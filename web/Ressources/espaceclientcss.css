@@ -1,0 +1,19 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 9 oct. 2019, 15:41:05
+    Author     : esic
+*/
+
+.backgroundgeneral{
+    background-image: url("http://media.gizmodo.co.uk/wp-content/uploads/2018/02/222194-black-panther-7680x4320-2018-hd-4k-8837.jpg");
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

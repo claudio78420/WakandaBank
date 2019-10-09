@@ -26,7 +26,16 @@ and open the template in the editor.
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
+  color: gold;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav h3 {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
   color: gold;
   display: block;
   transition: 0.3s;
