@@ -63,7 +63,19 @@ public class CompteDao {
         }
         String sql_swap = "UPDATE Compte SET statuscarte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
-        interro.setString(1, new_status);
-        interro.setString(2, Integer.toString(compte.getId()));        
+        swap.setString(1, new_status);
+        swap.setString(2, Integer.toString(compte.getId()));
+        swap.execute();
+    }
+
+    public static void changeDecouvert(Compte compte, double new_decouv) throws SQLException{
+        Connection connexion = AccessBD.getConnection();
+        String sql_swap = "UPDATE Compte SET decouvertcompte=? WHERE idcompte=?";
+        PreparedStatement swap = connexion.prepareStatement(sql_swap);
+        swap.setString(1, Double.toString(new_decouv));
+        swap.setString(2, Integer.toString(compte.getId()));
+        swap.execute();
     }
 }
+
+
