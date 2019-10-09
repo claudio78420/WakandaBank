@@ -77,11 +77,11 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `WakandaBank`.`Compte` ;
 
 CREATE TABLE IF NOT EXISTS `WakandaBank`.`Compte` (
-  `idcompte` VARCHAR(45) NOT NULL,
-  `idcarte` VARCHAR(45) NOT NULL,
-  `statutcarte` TINYINT NULL,
-  `decouvertcompte` FLOAT NULL,
-  `soldecompte` FLOAT NULL,
+  `idcompte` INT NOT NULL,
+  `idcarte` INT NOT NULL,
+  `statutcarte` TINYINT NOT NULL DEFAULT 0,
+  `decouvertcompte` DECIMAL NOT NULL DEFAULT 0,
+  `soldecompte` DECIMAL NOT NULL DEFAULT 0,
   `idclient` INT NOT NULL,
   PRIMARY KEY (`idcompte`),
   CONSTRAINT `fk_Compte_Client`
