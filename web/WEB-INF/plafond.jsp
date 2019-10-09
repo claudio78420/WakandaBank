@@ -10,7 +10,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <link rel="stylesheet" href="Ressources/toolbarleftcss.css">
         <link rel="stylesheet" href="Ressources/espaceclientcss.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
@@ -22,14 +21,7 @@
         
         <div class="container">
 
-            <div id="mySidenav" class="sidenav">
-                <h3>Monsieur ${personne.nom}</h3>
-              <a href="espaceclient">Comptes</a>
-              <a href="plafond">Plafond</a>
-              <a href="contactconseiller">Conseiller</a>
-              <br>
-              <a href="#">Déconnexion</a>
-            </div>
+            <%@include file="toolbarleft.jsp" %>
 
             <%@include file="toolbartop.jsp" %>
         </div>
@@ -38,8 +30,17 @@
         <div class="container" style="background-color: white">
             <br>
             
-            <h1 style="text-align: center">Comptes</h1>
-            <button class="btn btn-primary">Hello</button>
+            <h1 style="text-align: center">Plafond</h1>
+            <br><br><br><br>
+            
+            <h2>Votre plafond actuel :</h2>
+            
+            <br><br><br><br>
+            
+            <div style="width: 60%">
+                <h4 style="text-align: center">Si vous souhaitez modifier votre plafond, veuillez faire la demande ci-dessous en entrant le montant du plafond souhaité :</h4>
+            </div>
+
             
             
         </div>

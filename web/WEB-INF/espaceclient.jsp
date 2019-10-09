@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
               integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <link rel="stylesheet" href="Ressources/espaceclientcss.css">
-        <link rel="stylesheet" href="Ressources/toolbarleftcss.css">
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
         
 
@@ -26,14 +25,7 @@
         
         <div class="container">
 
-            <div id="mySidenav" class="sidenav">
-                <h3>Monsieur ${personne.nom}</h3>
-              <a href="espaceclient">Comptes</a>
-              <a href="plafond">Plafond</a>
-              <a href="contactconseiller">Conseiller</a>
-              <br>
-              <a href="#">Déconnexion</a>
-            </div>
+            <%@include file="toolbarleft.jsp" %>
 
             <%@include file="toolbartop.jsp" %>
         </div>
