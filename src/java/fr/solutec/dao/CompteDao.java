@@ -24,25 +24,25 @@ public class CompteDao {
     public static void insertCompte(Compte compte, Client client) throws SQLException {
         String sql = "INSERT INTO user (idcompte, idcarte, statutcarte, decouvertcompte, soldecompte, idclient) VALUES (?, ?, ?, ?, ?, ?)";
         Connection connexion = AccessBD.getConnection();
-        PreparedStatement requette = connexion.prepareStatement(sql);
-        requette.setString(1, Integer.toString(compte.getId()));
-        requette.setString(2, Integer.toString(compte.getCarte()));
-        requette.setString(3, Boolean.toString(compte.isStatut()));
-        requette.setString(4, Double.toString(compte.getDecouvert()));
-        requette.setString(5, Double.toString(compte.getSolde()));
-        requette.setString(5, Integer.toString(client.getId()));
+        PreparedStatement insertion = connexion.prepareStatement(sql);
+        insertion.setString(1, Integer.toString(compte.getId()));
+        insertion.setString(2, Integer.toString(compte.getCarte()));
+        insertion.setString(3, Boolean.toString(compte.isStatut()));
+        insertion.setString(4, Double.toString(compte.getDecouvert()));
+        insertion.setString(5, Double.toString(compte.getSolde()));
+        insertion.setString(5, Integer.toString(client.getId()));
 
-        requette.execute();
+        insertion.execute();
     }
     
     public static Boolean isCompteUnique(int compte, int carte) throws SQLException {
         Boolean check = true;
         String sql = "SELECT COUNT(*) AS total FROM Compte WHERE (idcompte=? OR idcarte=?)";
         Connection connexion = AccessBD.getConnection();
-        PreparedStatement requette = connexion.prepareStatement(sql);
-        requette.setString(1, Integer.toString(compte));
-        requette.setString(2, Integer.toString(carte));
-        ResultSet rs = requette.executeQuery();
+        PreparedStatement comptage = connexion.prepareStatement(sql);
+        comptage.setString(1, Integer.toString(compte));
+        comptage.setString(2, Integer.toString(carte));
+        ResultSet rs = comptage.executeQuery();
         if (rs.getInt("total")>0){
             check = false;
         }
@@ -68,11 +68,11 @@ public class CompteDao {
         swap.execute();
     }
 
-    public static void changeDecouvert(Compte compte, double new_decouv) throws SQLException{
+    public static void changeDecouvert(Compte compte, double new_decouvert) throws SQLException{
         Connection connexion = AccessBD.getConnection();
         String sql_swap = "UPDATE Compte SET decouvertcompte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
-        swap.setString(1, Double.toString(new_decouv));
+        swap.setString(1, Double.toString(new_decouvert));
         swap.setString(2, Integer.toString(compte.getId()));
         swap.execute();
     }
