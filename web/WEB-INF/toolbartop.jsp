@@ -38,7 +38,6 @@
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Accueil 
                 </button>
-                <span class="sr-only">(current)</span>
             </a>
               
               
