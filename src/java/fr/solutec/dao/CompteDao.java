@@ -12,7 +12,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -29,7 +32,7 @@ public class CompteDao {
         insertion.setBoolean(3, compte.isStatut());
         insertion.setDouble(4, compte.getDecouvert());
         insertion.setDouble(5, compte.getSolde());
-        insertion.setInt(5, client.getIdclient());
+        insertion.setInt(5, client.getId());
         insertion.execute();
     }
     
@@ -100,6 +103,26 @@ public class CompteDao {
         ask.setString(1, Integer.toString(compte.getId()));
         ResultSet rs = ask.executeQuery();
         return rs.getBoolean("statut");
+    }
+    
+    public static List<Compte> getComptesClient(Client client) throws SQLException{
+       List<Compte> result = new ArrayList<>();
+        Connection connexion = AccessBD.getConnection();
+        String sql_ask = "SELECT * FROM Compte WHERE idclient=?";
+        PreparedStatement ask = connexion.prepareStatement(sql_ask);
+        ask.setInt(1, client.getId());
+        ResultSet rs = ask.executeQuery();
+        while (rs.next()) {
+            Compte c = new Compte();
+            c.setId(rs.getInt("idcompte"));
+            c.setCarte(rs.getInt("idcarte"));
+            c.setStatut(rs.getBoolean("statutcarte"));
+            c.setSolde(rs.getDouble("decouvertcompte"));
+            c.setDecouvert(rs.getDouble("soldecompte"));
+            c.setId_client(rs.getInt("idclient"));
+            result.add(c);
+        }
+        return result;
     }
 }
 
