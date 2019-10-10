@@ -68,7 +68,7 @@ public class EspaceClientServlet extends HttpServlet {
         Client c = (Client) session.getAttribute("client");
         
         if(c!=null){
-            request.setAttribute("client", c);
+            
             request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
         }
         else{

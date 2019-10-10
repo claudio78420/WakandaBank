@@ -64,9 +64,7 @@ public class InfosClientServlet extends HttpServlet {
         
 
         HttpSession session = request.getSession(true);
-        
-        Client c = (Client) session.getAttribute("clients");
-        request.setAttribute("client", c);
+
     }
 
     /**
