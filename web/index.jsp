@@ -27,7 +27,8 @@
                 integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
         crossorigin="anonymous"></script>
     </head>
-    <body style="background-color:#99A3A4;">
+    
+    <body style="background-image: url(Ressources/LogoAvenger.jpg)">
         
       <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
         <a class="navbar-brand" href="#">
