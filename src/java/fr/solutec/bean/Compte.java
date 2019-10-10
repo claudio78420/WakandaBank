@@ -10,8 +10,8 @@ package fr.solutec.bean;
  * @author stagiaire
  */
 public class Compte {
-    int id;
-    int carte;
+    Long id;
+    Long carte;
     boolean statut;
     Double solde;
     Double decouvert;
@@ -20,7 +20,7 @@ public class Compte {
     public Compte() {
     }
 
-    public Compte(int id, int carte, boolean statut, Double solde, Double decouvert, int id_client) {
+    public Compte(Long id, Long carte, boolean statut, Double solde, Double decouvert, int id_client) {
         this.id = id;
         this.carte = carte;
         this.statut = statut;
@@ -29,19 +29,19 @@ public class Compte {
         this.id_client = id_client;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getCarte() {
+    public Long getCarte() {
         return carte;
     }
 
-    public void setCarte(int carte) {
+    public void setCarte(Long carte) {
         this.carte = carte;
     }
 

@@ -27,7 +27,7 @@ public class HistoriqueDao {
         String sql_ask = "SELECT * FROM Historique_chiffres WHERE idcompte=?";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql_ask);
-        requette.setString(1, Integer.toString(compte.getId()));
+        requette.setString(1, Long.toString(compte.getId()));
         ResultSet rs = requette.executeQuery();
         while (rs.next()) {
             HistoriqueChiffres hc = new HistoriqueChiffres();
@@ -68,7 +68,7 @@ public class HistoriqueDao {
         String sql_ask = "SELECT * FROM Historique_profils WHERE idcompte=?";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql_ask);
-        requette.setString(1, Integer.toString(compte.getId()));
+        requette.setString(1, Long.toString(compte.getId()));
         ResultSet rs = requette.executeQuery();
         while (rs.next()) {
             HistoriqueProfils hc = new HistoriqueProfils();
