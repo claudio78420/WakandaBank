@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,11 +45,29 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Visuel sur vos comptes</h2>
                     <div class="card-body">
                         <br>
-                        <h5 class="card-body" id="idnumerocompte" style="display: inline">${CompteDao.getComptesClient(client).get(0).getCarte()}</h5>
-                        <h5 class="card-body" id="idmontantcompte" style="display: inline">Ici le montant</h5>
-                        <h5 class="card-body" style="display: inline">€</h5>
-                        <h5 class="card-body" id="idnumérocarte" style="display: inline">Ici numéro de carte</h5>
-                        <h5 class="card-body" id="idplafondcarte" style="display: inline">Ici le plafond de carte</h5>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Carte</th>
+                                        <th>Solde</th>
+                                        <th>Découvert</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    <c:forEach items="${listecomptes}" var="l">
+                                        <tr>
+                                            <th scope="row">${l.id}</th>
+                                            <td>${l.carte}</td>
+                                            <td>${l.solde}</td>
+                                            <td>${l.decouvert}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
 
                         <br><br><br>
                     </div>
