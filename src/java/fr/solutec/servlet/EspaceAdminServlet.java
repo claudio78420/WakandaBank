@@ -7,8 +7,11 @@ package fr.solutec.servlet;
 
 import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
+import fr.solutec.bean.Conseiller;
+import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +43,7 @@ public class EspaceAdminServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceAdminServlet</title>");            
+            out.println("<title>Servlet EspaceAdminServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet EspaceAdminServlet at " + request.getContextPath() + "</h1>");
@@ -62,14 +65,19 @@ public class EspaceAdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        
+
         Administrateur a = (Administrateur) session.getAttribute("administrateur");
-        
-        if(a!=null){
-            request.setAttribute("administrateur", a);
-            request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
-        }
-        else{
+
+        if (a != null) {
+            try {
+                List<Conseiller> conseillers = ConseillerDao.getAllCons();
+                request.setAttribute("administrateur", a);
+                request.setAttribute("listeconseillers", conseillers);
+                request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+
+        } else {
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
             request.getRequestDispatcher("WEB-INF/connexionadmin.jsp").forward(request, response);
 
