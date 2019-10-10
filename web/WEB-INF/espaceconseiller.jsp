@@ -1,4 +1,10 @@
 <%-- 
+    Document   : espaceconseiller
+    Created on : 10 oct. 2019, 14:51:46
+    Author     : esic
+--%>
+
+<%-- 
     Document   : espaceadmin
     Created on : 10 oct. 2019, 13:24:02
     Author     : esic
@@ -26,31 +32,35 @@
         <div class="container">
 
 
-            <%@include file="toolbartopadmin.jsp" %>
+            <%@include file="toolbartopconseiller.jsp" %>
         </div>
         
         <br>
         <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center; color: white">Gestion des conseillers</h1>
+            <h1 style="text-align: center; color: white">Espace conseiller</h1>
             <br><br>
             
             
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Conseillers activés</h2>
-                    <div class="card-body">     
+                    
+                    <div class="card-body">
+
+                        
                     </div>
                 </div>
             </div>
+            
             <br>
-            <br>    
+            <br>
+            
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Conseillers désactivés</h2>
+                    
                     <div class="card-body"> 
                     </div>
                 </div>
