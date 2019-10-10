@@ -31,19 +31,22 @@
     </head>
     <body>
         
-      <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
-        <a class="navbar-brand" href="#">
-            <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                Wakanda Bank
-            </button>
-        </a>
+      <nav class="navbar navbar-expand-lg" style="background-color: black; color: gold">  
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link active" href="">
-                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+                <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Accueil 
                 </button>
                 <span class="sr-only">(current)</span>
+            </a>
+              
+              
+              
+            <a class="nav-item nav-link active" href="">
+                <button class ="btn btn-primary" style="color: gold; background-color: black">
+                    Bienvenue dans votre espace client, ${personne.nom}
+                </button>
             </a>
 
 
