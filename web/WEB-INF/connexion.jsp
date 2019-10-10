@@ -44,12 +44,12 @@
                         <div class="card-body">
                             <form action ="connexion" method="POST">
                                 <div class="form-group">
-                                    <input type="email" placeholder="mail"
-                                           required="" name="mail" class="form-control">
+                                    <input type="email" placeholder="Mail"
+                                           required="" name="mail" class="form-control" value="${param['mail']} ">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <input type="password" placeholder="mot de passe"
+                                    <input type="password" placeholder="Mot de passe"
                                            required="" name="mdp" class="form-control">
                                 </div>
                                 <br>

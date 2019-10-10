@@ -4,6 +4,8 @@
     Author     : esic
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -42,6 +44,30 @@
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Conseillers activés</h2>
                     <div class="card-body">     
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Mail</th>
+                                </tr>
+                            </thead>
+                            
+
+                            <tbody>
+                                <c:forEach items="${listeconseillers}" var="m">
+                                    <tr>
+                                        <th scope="row">${m.id}</th>
+                                        <td>${m.nom}</td>
+                                        <td>${m.prenom}</td>
+                                        <td>${m.mail}</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    
                     </div>
                 </div>
             </div>
