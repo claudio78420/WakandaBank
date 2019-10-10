@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -32,8 +33,8 @@ public class CompteDao {
         Long no_carte = 0L;
         Boolean lever = false;
         while (lever){
-            no_compte = (long) (10000000000L + (long)(Math.random() * ((99999999999L - 10000000000L) + 1)));
-            no_carte = (long) (1000000000000000L + (long)(Math.random() * ((9999999999999999L - 1000000000000000L) + 1)));
+            no_compte = (long) ThreadLocalRandom.current().nextLong(10000000000L, 99999999999L);
+            no_carte = (long) ThreadLocalRandom.current().nextLong(1000000000000000L, 9999999999999999L);
             lever = isCompteUnique(no_compte, no_carte);
         }
         insertion.setString(1, Long.toString(no_compte));
@@ -41,7 +42,7 @@ public class CompteDao {
         insertion.setBoolean(3, compte.isStatut());
         insertion.setDouble(4, compte.getDecouvert());
         insertion.setDouble(5, compte.getSolde());
-        insertion.setInt(5, client.getId());
+        insertion.setInt(6, client.getId());
         insertion.execute();
     }
     
