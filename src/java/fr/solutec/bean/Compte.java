@@ -13,14 +13,14 @@ public class Compte {
     int id;
     int carte;
     boolean statut;
-    float solde;
-    float decouvert;
+    Double solde;
+    Double decouvert;
     int id_client;
 
     public Compte() {
     }
 
-    public Compte(int id, int carte, boolean statut, float solde, float decouvert, int id_client) {
+    public Compte(int id, int carte, boolean statut, Double solde, Double decouvert, int id_client) {
         this.id = id;
         this.carte = carte;
         this.statut = statut;
@@ -53,19 +53,19 @@ public class Compte {
         this.statut = statut;
     }
 
-    public float getSolde() {
+    public Double getSolde() {
         return solde;
     }
 
-    public void setSolde(float solde) {
+    public void setSolde(Double solde) {
         this.solde = solde;
     }
 
-    public float getDecouvert() {
+    public Double getDecouvert() {
         return decouvert;
     }
 
-    public void setDecouvert(float decouvert) {
+    public void setDecouvert(Double decouvert) {
         this.decouvert = decouvert;
     }
 

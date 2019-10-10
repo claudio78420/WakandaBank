@@ -61,9 +61,9 @@ public class ClientDao {
         String sql = "SELECT * FROM Client";
         Connection connexion = AccessBD.getConnection();
 
-        Statement requette = connexion.createStatement();
+        PreparedStatement requette = connexion.prepareStatement(sql);
 
-        ResultSet rs = requette.executeQuery(sql);
+        ResultSet rs = requette.executeQuery();
 
         while (rs.next()) {
             Client c = new Client();

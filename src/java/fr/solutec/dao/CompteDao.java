@@ -12,7 +12,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *
@@ -100,6 +103,26 @@ public class CompteDao {
         ask.setString(1, Integer.toString(compte.getId()));
         ResultSet rs = ask.executeQuery();
         return rs.getBoolean("statut");
+    }
+    
+    public static List<Compte> getComptesClient(Client client) throws SQLException{
+       List<Compte> result = new ArrayList<>();
+        Connection connexion = AccessBD.getConnection();
+        String sql = "SELECT * FROM Compte WHERE idclient=?";
+        PreparedStatement requette = connexion.prepareStatement(sql);
+        sql.setString(1, Integer.toString(client.getIdclient()));
+        ResultSet rs = requette.executeQuery();
+        while (rs.next()) {
+            Compte c = new Compte();
+            c.setId(rs.getInt("idcompte"));
+            c.setCarte(rs.getInt("idcarte"));
+            c.setStatut(rs.getBoolean("statutcarte"));
+            c.setSolde(rs.getDouble("decouvertcompte"));
+            c.setDecouvert(rs.getDouble("soldecompte"));
+            c.setId_client(rs.getInt("idclient"));
+            result.add(c);
+        }
+        return result;
     }
 }
 
