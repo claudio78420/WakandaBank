@@ -61,7 +61,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+        request.getRequestDispatcher("connexion.jsp").forward(request, response);
     }
 
     /**
@@ -75,17 +75,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String mail = request.getParameter("mail");
-        String password = request.getParameter("mdp");
-        Client c = new Client();
-        try {
-            ClientDao.getByLoginPass(mail, password);
-            request.getSession(true).setAttribute("client", c);
-            response.sendRedirect("espaceclient");
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
