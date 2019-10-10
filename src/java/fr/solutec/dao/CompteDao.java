@@ -16,6 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -27,22 +29,30 @@ public class CompteDao {
         String sql = "INSERT INTO user (idcompte, idcarte, statutcarte, decouvertcompte, soldecompte, idclient) VALUES (?, ?, ?, ?, ?, ?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement insertion = connexion.prepareStatement(sql);
-        insertion.setString(1, Integer.toString(compte.getId()));
-        insertion.setString(2, Integer.toString(compte.getCarte()));
+        Long no_compte = 0L;
+        Long no_carte = 0L;
+        Boolean lever = false;
+        while (lever){
+            no_compte = (long) ThreadLocalRandom.current().nextLong(10000000000L, 99999999999L);
+            no_carte = (long) ThreadLocalRandom.current().nextLong(1000000000000000L, 9999999999999999L);
+            lever = isCompteUnique(no_compte, no_carte);
+        }
+        insertion.setString(1, Long.toString(no_compte));
+        insertion.setString(2, Long.toString(no_carte));
         insertion.setBoolean(3, compte.isStatut());
         insertion.setDouble(4, compte.getDecouvert());
         insertion.setDouble(5, compte.getSolde());
-        insertion.setInt(5, client.getId());
+        insertion.setInt(6, client.getId());
         insertion.execute();
     }
     
-    public static Boolean isCompteUnique(int compte, int carte) throws SQLException {
+    public static Boolean isCompteUnique(Long compte, Long carte) throws SQLException {
         Boolean check = true;
         String sql = "SELECT COUNT(*) AS total FROM Compte WHERE (idcompte=? OR idcarte=?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement comptage = connexion.prepareStatement(sql);
-        comptage.setString(1, Integer.toString(compte));
-        comptage.setString(2, Integer.toString(carte));
+        comptage.setString(1, Long.toString(compte));
+        comptage.setString(2, Long.toString(carte));
         ResultSet rs = comptage.executeQuery();
         if (rs.getInt("total")>0){
             check = false;
@@ -54,7 +64,7 @@ public class CompteDao {
         String sql_interro = "SELECT statutcarte AS status FROM Compte WHERE idcompte=?";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement interro = connexion.prepareStatement(sql_interro);
-        interro.setString(1, Integer.toString(compte.getId()));
+        interro.setString(1, Long.toString(compte.getId()));
         ResultSet rs = interro.executeQuery();
         String new_status = "";
         if (rs.getBoolean("status")){
@@ -65,7 +75,7 @@ public class CompteDao {
         String sql_swap = "UPDATE Compte SET statuscarte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
         swap.setString(1, new_status);
-        swap.setString(2, Integer.toString(compte.getId()));
+        swap.setString(2, Long.toString(compte.getId()));
         swap.execute();
     }
 
@@ -74,7 +84,7 @@ public class CompteDao {
         String sql_swap = "UPDATE Compte SET decouvertcompte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
         swap.setDouble(1, new_decouvert);
-        swap.setString(2, Integer.toString(compte.getId()));
+        swap.setString(2, Long.toString(compte.getId()));
         swap.execute();
     }
     
@@ -82,7 +92,7 @@ public class CompteDao {
         Connection connexion = AccessBD.getConnection();
         String sql_ask = "SELECT soldecompte AS solde FROM Compte WHERE idcompte=?";
         PreparedStatement ask = connexion.prepareStatement(sql_ask);
-        ask.setString(1, Integer.toString(compte.getId()));
+        ask.setString(1, Long.toString(compte.getId()));
         ResultSet rs = ask.executeQuery();
         return rs.getDouble("solde");
     }
@@ -91,7 +101,7 @@ public class CompteDao {
         Connection connexion = AccessBD.getConnection();
         String sql_ask = "SELECT decouvertcompte AS decouvert FROM Compte WHERE idcompte=?";
         PreparedStatement ask = connexion.prepareStatement(sql_ask);
-        ask.setString(1, Integer.toString(compte.getId()));
+        ask.setString(1, Long.toString(compte.getId()));
         ResultSet rs = ask.executeQuery();
         return rs.getDouble("decouvert");
     }
@@ -100,7 +110,7 @@ public class CompteDao {
         Connection connexion = AccessBD.getConnection();
         String sql_ask = "SELECT statutcarte AS statut FROM Compte WHERE idcompte=?";
         PreparedStatement ask = connexion.prepareStatement(sql_ask);
-        ask.setString(1, Integer.toString(compte.getId()));
+        ask.setString(1, Long.toString(compte.getId()));
         ResultSet rs = ask.executeQuery();
         return rs.getBoolean("statut");
     }
@@ -114,8 +124,8 @@ public class CompteDao {
         ResultSet rs = ask.executeQuery();
         while (rs.next()) {
             Compte c = new Compte();
-            c.setId(rs.getInt("idcompte"));
-            c.setCarte(rs.getInt("idcarte"));
+            c.setId(rs.getLong("idcompte"));
+            c.setCarte(rs.getLong("idcarte"));
             c.setStatut(rs.getBoolean("statutcarte"));
             c.setSolde(rs.getDouble("decouvertcompte"));
             c.setDecouvert(rs.getDouble("soldecompte"));
