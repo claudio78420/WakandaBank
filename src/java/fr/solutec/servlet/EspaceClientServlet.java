@@ -73,7 +73,7 @@ public class EspaceClientServlet extends HttpServlet {
         }
         else{
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexion.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
 
         }
         
