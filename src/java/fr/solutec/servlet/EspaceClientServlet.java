@@ -65,7 +65,7 @@ public class EspaceClientServlet extends HttpServlet {
         
         HttpSession session = request.getSession(true);
         
-        Client c = (Client) session.getAttribute("clients");
+        Client c = (Client) session.getAttribute("client");
         
         if(c!=null){
             request.setAttribute("client", c);
@@ -92,24 +92,6 @@ public class EspaceClientServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        try {
-            String mail = request.getParameter("mail");
-            String password = request.getParameter("mdp");
-            request.setAttribute("msg", "Bonjour!");
-            Client c = ClientDao.getByLoginPass(mail, password);
-            
-            if(c!=null){
-                request.getSession(true).setAttribute("clients", c);
-                response.sendRedirect("espaceclient");
-            }
-            else{
-                request.setAttribute("msg", "Login ou mot de passe incorrect.");
-                request.getRequestDispatcher("connexion.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
-        }
     }
 
     /**

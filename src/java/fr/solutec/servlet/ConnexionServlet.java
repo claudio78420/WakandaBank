@@ -61,7 +61,7 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("connexion.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
     }
 
     /**
@@ -75,14 +75,20 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+        String mail = request.getParameter("mail");
+        String mdp = request.getParameter("mdp");
+        Client c = new Client();
+        
+        try {
+            c = ClientDao.getByLoginPass(mail, mdp);
+            request.getSession(true).setAttribute("client", c);
+            response.sendRedirect("espaceclient");
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
+    }
     @Override
     public String getServletInfo() {
         return "Short description";

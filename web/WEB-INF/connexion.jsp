@@ -42,7 +42,7 @@
                             Formulaire
                         </div>
                         <div class="card-body">
-                            <form action ="espaceclient" method="POST">
+                            <form action ="connexion" method="POST">
                                 <div class="form-group">
                                     <input type="email" placeholder="mail"
                                            required="" name="mail" class="form-control" 
