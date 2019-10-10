@@ -32,8 +32,8 @@ public class CompteDao {
         Long no_carte = 0L;
         Boolean lever = false;
         while (lever){
-            no_compte = 10000000000L + (long)(Math.random() * ((99999999999L - 10000000000L) + 1));
-            no_carte = 1000000000000000L + (long)(Math.random() * ((9999999999999999L - 1000000000000000L) + 1));
+            no_compte = (long) (10000000000L + (long)(Math.random() * ((99999999999L - 10000000000L) + 1)));
+            no_carte = (long) (1000000000000000L + (long)(Math.random() * ((9999999999999999L - 1000000000000000L) + 1)));
             lever = isCompteUnique(no_compte, no_carte);
         }
         insertion.setString(1, Long.toString(no_compte));

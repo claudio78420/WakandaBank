@@ -71,7 +71,7 @@ public class EspaceAdminServlet extends HttpServlet {
         }
         else{
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexionadmin.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/connexionadmin.jsp").forward(request, response);
 
         }
     }

@@ -65,10 +65,9 @@
                             <br>
                                 <textarea rows = "5" cols = "120" name = "description"></textarea>
                                 <br><br>
-                                <a href="mailto:claudio.rafael@hotmail.fr">
-                                    <button class="btn btn-primary btn-block" id="benvoyermail" style="width: 20%; margin: auto">Envoyer</button>
-                                    
-                                </a>
+                                <button  class="btn btn-block" id="benvoyermail" style="width: 20%; margin: auto">
+                                <a  href="mailto:claudio.rafael@hotmail.fr">Envoyer</a>
+                                    </button>
                            
                         </form>
                     </div>

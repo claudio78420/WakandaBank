@@ -45,7 +45,7 @@
                             <form action ="connexion" method="POST">
                                 <div class="form-group">
                                     <input type="email" placeholder="mail"
-                                           required="" name="mail" class="form-control" 
+                                           required="" name="mail" class="form-control">
                                 </div>
                                 <br>
                                 <div class="form-group">
