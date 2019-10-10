@@ -207,6 +207,7 @@ INSERT INTO `wakandabank`.`administrateur` (`idadmin`, `nomadmin`, `prenomadmin`
 
 INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('1', 'Cons1', 'Test1', 'cons1@test', 'test1');
 INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('2', 'Cons2', 'Test2', 'cons2@test', 'test2');
+INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`, `statutcons`) VALUES ('3', 'Cons3', 'Test3', 'cons3@test', 'test3', '0');
 
 INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('1', 'Client1', 'Test1', 'client1@test', 'test1', '1');
 INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('2', 'Client2', 'Test2', 'client2@test', 'test2', '1');
