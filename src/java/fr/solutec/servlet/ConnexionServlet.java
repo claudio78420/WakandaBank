@@ -81,6 +81,7 @@ public class ConnexionServlet extends HttpServlet {
         try {
             ClientDao.getByLoginPass(mail, password);
             request.getSession(true).setAttribute("client", c);
+            response.sendRedirect("espaceclient");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println(e.getMessage());
