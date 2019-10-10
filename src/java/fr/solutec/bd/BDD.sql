@@ -10,7 +10,7 @@
  */
 
 -- MySQL Workbench Forward Engineering
-
+DELIMITER $$
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Types_modif` (
   PRIMARY KEY (`idmodif`))
 ENGINE = InnoDB;
 
-INSERT INTO `wakandabank`.`Types_modif` (`idmodif`, `libelle`) VALUES ('1', 'Solde'), ('2', 'Plafond de Découvert'), ('3', 'Nom'), ('4', 'Mot de passe'), ('5', 'Avatar');
+INSERT INTO `wakandabank`.`Types_modif` (`idmodif`, `libelle`) VALUES ('1', 'Solde'), ('2', 'Plafond de Découvert'), ('3', 'Statut Carte'), ('4', 'Nom'), ('5', 'Mot de passe');
 
 
 -- -----------------------------------------------------
@@ -116,7 +116,7 @@ DROP TABLE IF EXISTS `WakandaBank`.`Historique_chiffres` ;
 
 CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
   `idchiffres` INT NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
+  `date` DATETIME NOT NULL,
   `ancien` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `nouveau` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `idmodif` INT NOT NULL,
@@ -130,6 +130,27 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
 	REFERENCES `WakandaBank`.`Compte` (`idcompte`))
 ENGINE = InnoDB;
 
+DROP TRIGGER IF EXISTS update_log_chiffres $$
+CREATE TRIGGER update_log_chiffres
+AFTER UPDATE
+ON `WakandaBank`.`Compte`
+FOR EACH ROW
+BEGIN
+	IF NEW.soldecompte <> OLD.soldecompte THEN
+    INSERT INTO `wakandabank`.`Historique_chiffres` (`date`, `ancien`, `nouveau`, `idmodif`, `idcompte`) 
+    VALUES (NOW(), old.soldecompte, new.soldecompte, 1, OLD.idcompte);
+    END IF;
+    
+    IF NEW.decouvertcompte <> OLD.decouvertcompte THEN
+    INSERT INTO `wakandabank`.`Historique_chiffres` (`date`, `ancien`, `nouveau`, `idmodif`, `idcompte`) 
+    VALUES (NOW(), old.decouvertcompte, new.decouvertcompte, 2, OLD.idcompte);
+    END IF;
+    
+    IF NEW.statutcarte <> OLD.statutcarte THEN
+    INSERT INTO `wakandabank`.`Historique_chiffres` (`date`, `ancien`, `nouveau`, `idmodif`, `idcompte`) 
+    VALUES (NOW(), old.statutcarte, new.statutcarte, 3, OLD.idcompte);
+    END IF;
+END $$
 
 -- -----------------------------------------------------
 -- Table `WakandaBank`.`Historique_profils`
@@ -138,19 +159,36 @@ DROP TABLE IF EXISTS `WakandaBank`.`Historique_profils` ;
 
 CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_profils` (
   `idprofils` INT NOT NULL AUTO_INCREMENT,
-  `date` DATE NOT NULL,
+  `date` DATETIME NOT NULL,
   `ancien` VARCHAR(45) NOT NULL DEFAULT 0,
   `nouveau` VARCHAR(45) NOT NULL DEFAULT 0,
   `idmodif` INT NOT NULL,
-  `idcompte` BIGINT NOT NULL,
+  `idclient` INT NOT NULL,
   PRIMARY KEY (`idprofils`),
   CONSTRAINT `fk_HistoriqueProfil_Type`
     FOREIGN KEY (`idmodif`)
     REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
-  CONSTRAINT `fk_HistoriqueProfil_Compte`
-    FOREIGN KEY (`idcompte`)
-    REFERENCES `WakandaBank`.`Compte` (`idcompte`))
+  CONSTRAINT `fk_HistoriqueProfil_Client`
+    FOREIGN KEY (`idclient`)
+    REFERENCES `WakandaBank`.`Client` (`idclient`))
 ENGINE = InnoDB;
+
+DROP TRIGGER IF EXISTS update_log_profils $$
+CREATE TRIGGER update_log_profils
+AFTER UPDATE
+ON `WakandaBank`.`Client`
+FOR EACH ROW
+BEGIN
+	IF NEW.nomclient <> OLD.nomclient THEN
+    INSERT INTO `wakandabank`.`Historique_profils` (`date`, `ancien`, `nouveau`, `idmodif`, `idclient`) 
+    VALUES (NOW(), old.nomclient, new.nomclient, 4, OLD.idclient);
+    END IF;
+    
+    IF NEW.passwordclient <> OLD.passwordclient THEN
+    INSERT INTO `wakandabank`.`Historique_profils` (`date`, `ancien`, `nouveau`, `idmodif`, `idclient`) 
+    VALUES (NOW(), old.passwordclient, new.passwordclient, 5, OLD.idclient);
+    END IF;
+END $$
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

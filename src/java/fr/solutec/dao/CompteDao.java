@@ -8,12 +8,11 @@ package fr.solutec.dao;
 import fr.solutec.bean.Client;
 import fr.solutec.bean.Compte;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
 
 /**
  *
@@ -27,11 +26,10 @@ public class CompteDao {
         PreparedStatement insertion = connexion.prepareStatement(sql);
         insertion.setString(1, Integer.toString(compte.getId()));
         insertion.setString(2, Integer.toString(compte.getCarte()));
-        insertion.setString(3, Boolean.toString(compte.isStatut()));
-        insertion.setString(4, Double.toString(compte.getDecouvert()));
-        insertion.setString(5, Double.toString(compte.getSolde()));
-        insertion.setString(5, Integer.toString(client.getId()));
-
+        insertion.setBoolean(3, compte.isStatut());
+        insertion.setDouble(4, compte.getDecouvert());
+        insertion.setDouble(5, compte.getSolde());
+        insertion.setInt(5, client.getId());
         insertion.execute();
     }
     
@@ -56,10 +54,12 @@ public class CompteDao {
         interro.setString(1, Integer.toString(compte.getId()));
         ResultSet rs = interro.executeQuery();
         String new_status = "";
+        String old_status = "";
+        int type_modif = 0;
         if (rs.getBoolean("status")){
             new_status = "FALSE";
-        }else{
-            new_status = "TRUE"; 
+         }else{
+            new_status = "TRUE";
         }
         String sql_swap = "UPDATE Compte SET statuscarte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
@@ -72,7 +72,7 @@ public class CompteDao {
         Connection connexion = AccessBD.getConnection();
         String sql_swap = "UPDATE Compte SET decouvertcompte=? WHERE idcompte=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);
-        swap.setString(1, Double.toString(new_decouvert));
+        swap.setDouble(1, new_decouvert);
         swap.setString(2, Integer.toString(compte.getId()));
         swap.execute();
     }
