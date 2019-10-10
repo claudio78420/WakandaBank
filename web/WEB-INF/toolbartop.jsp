@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@page import="fr.solutec.bean.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
