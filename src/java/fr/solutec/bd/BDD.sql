@@ -120,16 +120,15 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
   `ancien` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `nouveau` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `idmodif` INT NOT NULL,
-  `idcompte` INT NOT NULL,
+  `idcompte` BIGINT NOT NULL,
   PRIMARY KEY (`idchiffres`),
   CONSTRAINT `fk_HistoriqueChiffres_Type`
     FOREIGN KEY (`idmodif`)
-    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`))
+    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
+  CONSTRAINT `fk_HistoriqueChiffres_Compte`
+	FOREIGN KEY (`idcompte`)
+	REFERENCES `WakandaBank`.`Compte` (`idcompte`))
 ENGINE = InnoDB;
-
-ALTER TABLE `WakandaBank`.`Historique_chiffres`
-  ADD FOREIGN KEY `fk_HistoriqueChiffres_Compte` (`idcompte`)
-      REFERENCES `WakandaBank`.`Compte` (`idcompte`) ;
 
 
 -- -----------------------------------------------------
@@ -138,13 +137,13 @@ ALTER TABLE `WakandaBank`.`Historique_chiffres`
 DROP TABLE IF EXISTS `WakandaBank`.`Historique_profils` ;
 
 CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_profils` (
-  `idprofilss` INT NOT NULL AUTO_INCREMENT,
+  `idprofils` INT NOT NULL AUTO_INCREMENT,
   `date` DATE NOT NULL,
   `ancien` VARCHAR(45) NOT NULL DEFAULT 0,
   `nouveau` VARCHAR(45) NOT NULL DEFAULT 0,
   `idmodif` INT NOT NULL,
-  `idcompte` INT NOT NULL,
-  PRIMARY KEY (`idchiffres`),
+  `idcompte` BIGINT NOT NULL,
+  PRIMARY KEY (`idprofils`),
   CONSTRAINT `fk_HistoriqueProfil_Type`
     FOREIGN KEY (`idmodif`)
     REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
