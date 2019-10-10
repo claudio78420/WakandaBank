@@ -42,7 +42,7 @@
                             Formulaire
                         </div>
                         <div class="card-body">
-                            <form action ="connexion" method="POST">
+                            <form action ="espaceclient" method="POST">
                                 <div class="form-group">
                                     <input type="email" placeholder="mail"
                                            required="" name="mail" class="form-control" 
@@ -53,6 +53,7 @@
                                            required="" name="mdp" class="form-control">
                                 </div>
                                 <br>
+                                <h5 id="msg" value="msg"></h5>
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
                                     se connecter
                                 </button>
