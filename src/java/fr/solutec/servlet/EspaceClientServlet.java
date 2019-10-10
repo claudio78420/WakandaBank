@@ -95,10 +95,11 @@ public class EspaceClientServlet extends HttpServlet {
         try {
             String mail = request.getParameter("mail");
             String password = request.getParameter("mdp");
+            request.setAttribute("msg", "Bonjour!");
             Client c = ClientDao.getByLoginPass(mail, password);
             
             if(c!=null){
-                request.getSession(true).setAttribute("client", c);
+                request.getSession(true).setAttribute("clients", c);
                 response.sendRedirect("espaceclient");
             }
             else{
