@@ -20,8 +20,7 @@ public class Administrateur {
     public Administrateur() {
     }
 
-    public Administrateur(int id, String nom, String prenom, String mail, String password) {
-        this.id = id;
+    public Administrateur(String nom, String prenom, String mail, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
