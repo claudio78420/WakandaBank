@@ -44,7 +44,7 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Visuel sur vos comptes</h2>
                     <div class="card-body">
                         <br>
-                        <h5 class="card-body" id="idnumerocompte" style="display: inline">Ici le numéro de compte</h5>
+                        <h5 class="card-body" id="idnumerocompte" style="display: inline">${client.nom}</h5>
                         <h5 class="card-body" id="idmontantcompte" style="display: inline">Ici le montant</h5>
                         <h5 class="card-body" style="display: inline">€</h5>
                         <h5 class="card-body" id="idnumérocarte" style="display: inline">Ici numéro de carte</h5>

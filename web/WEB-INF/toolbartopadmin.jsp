@@ -42,14 +42,14 @@
               
               
               
-            <a class="nav-item nav-link active" href="" style="margin-left: 70%">
+            <a class="nav-item nav-link active" href="" style="margin-left: 60%">
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Bienvenue sur votre espace admin, ${administrateur.nom}
                 </button>
             </a>
                 
                 
-            <a class="nav-item nav-link active" href="deco" style="margin-left: 55%">
+            <a class="nav-item nav-link active" href="deco" style="margin-left: 30%">
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Déconnexion
                 </button>

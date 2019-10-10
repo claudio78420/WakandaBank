@@ -39,18 +39,38 @@
             
             
             <div class="col d-flex justify-content-center">
-                <div class="card text-center" style="width: 100%;
+                <div class="card text-center" style="width: 70%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier vos données</h2>
                     <div class="card-body">
                         <br>
-                        <h5 class="card-body" id="idnumerocompte" style="display: inline">
-                        ${client.nom}
-                        ${client.prenom}
-                        ${client.mail}
-                        ${client.password}
-                        ${client.avatar}
-                        </h5>
+                            
+                            <div>
+                                <h5>Nom :</h5>
+                                    <br>
+                                    <input type="text" id="auto" class="form-control text-center" placeholder="Nom" value="${client.nom}">
+                            </div>
+                            <br><br>
+                            <div>
+                                    <h5>Prénom :</h5>
+                                    <br>
+                                    <input type="text" id="auto" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
+                            </div>
+                            <br><br>
+                            <div>
+                                    <h5>Mail :</h5>
+                                    <br>
+                                    <input type="text" id="auto" class="form-control text-center" placeholder="Mail" value="${client.mail}">
+                            </div>
+                            <br><br>
+
+                        
+                                
+                               
+                
+
+                               
+                            
 
                         <br><br><br>
                     </div>
