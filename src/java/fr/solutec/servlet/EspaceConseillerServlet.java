@@ -5,8 +5,7 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.bean.Administrateur;
-import fr.solutec.bean.Client;
+import fr.solutec.bean.Conseiller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "EspaceAdminServlet", urlPatterns = {"/espaceadmin"})
-public class EspaceAdminServlet extends HttpServlet {
+@WebServlet(name = "EspaceConseillerServlet", urlPatterns = {"/espaceconseiller"})
+public class EspaceConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class EspaceAdminServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceAdminServlet</title>");            
+            out.println("<title>Servlet EspaceConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EspaceAdminServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EspaceConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,20 +60,20 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession(true);
         
-        Administrateur a = (Administrateur) session.getAttribute("administrateur");
+        Conseiller co = (Conseiller) session.getAttribute("conseiller");
         
-        if(a!=null){
-            request.setAttribute("administrateur", a);
-            request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
+        if(co!=null){
+            request.setAttribute("conseiller", co);
+            request.getRequestDispatcher("WEB-INF/espaceconseiller.jsp").forward(request, response);
         }
         else{
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexionadmin.jsp").forward(request, response);
-
+            request.getRequestDispatcher("connexioncons.jsp").forward(request, response);
         }
-    }
+        }
 
     /**
      * Handles the HTTP <code>POST</code> method.

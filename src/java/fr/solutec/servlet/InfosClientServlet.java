@@ -5,7 +5,6 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "EspaceAdminServlet", urlPatterns = {"/espaceadmin"})
-public class EspaceAdminServlet extends HttpServlet {
+@WebServlet(name = "InfosClientServlet", urlPatterns = {"/mesinfos"})
+public class InfosClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class EspaceAdminServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceAdminServlet</title>");            
+            out.println("<title>Servlet InfosClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EspaceAdminServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InfosClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,19 +60,11 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
+        request.getRequestDispatcher("WEB-INF/infosclient.jsp").forward(request, response);
         
-        Administrateur a = (Administrateur) session.getAttribute("administrateur");
-        
-        if(a!=null){
-            request.setAttribute("administrateur", a);
-            request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
-        }
-        else{
-            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexionadmin.jsp").forward(request, response);
 
-        }
+        HttpSession session = request.getSession(true);
+
     }
 
     /**
@@ -87,7 +78,7 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        processRequest(request, response);
     }
 
     /**

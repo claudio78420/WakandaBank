@@ -5,8 +5,8 @@
  */
 package fr.solutec.servlet;
 
-import fr.solutec.bean.Administrateur;
-import fr.solutec.bean.Client;
+import fr.solutec.bean.Conseiller;
+import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,14 +14,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author esic
  */
-@WebServlet(name = "EspaceAdminServlet", urlPatterns = {"/espaceadmin"})
-public class EspaceAdminServlet extends HttpServlet {
+@WebServlet(name = "ConnexionConsServlet", urlPatterns = {"/connexioncons"})
+public class ConnexionConsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class EspaceAdminServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceAdminServlet</title>");            
+            out.println("<title>Servlet ConnexionConsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EspaceAdminServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ConnexionConsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,19 +60,7 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-        
-        Administrateur a = (Administrateur) session.getAttribute("administrateur");
-        
-        if(a!=null){
-            request.setAttribute("administrateur", a);
-            request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
-        }
-        else{
-            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexionadmin.jsp").forward(request, response);
-
-        }
+        request.getRequestDispatcher("WEB-INF/connexioncons.jsp").forward(request, response);
     }
 
     /**
@@ -87,7 +74,18 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        String mail = request.getParameter("mail");
+        String mdp = request.getParameter("mdp");
+        Conseiller co = new Conseiller();
+        
+        try {
+            co = ConseillerDao.getByLoginPass(mail, mdp);
+            request.getSession(true).setAttribute("conseiller", co);
+            response.sendRedirect("espaceconseiller");
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
     }
 
     /**

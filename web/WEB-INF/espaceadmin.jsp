@@ -41,16 +41,12 @@
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Conseillers activés</h2>
-                    <div class="card-body">
-
-                        
+                    <div class="card-body">     
                     </div>
                 </div>
             </div>
-            
             <br>
-            <br>
-            
+            <br>    
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
