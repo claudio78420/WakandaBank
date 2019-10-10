@@ -56,7 +56,7 @@
             </a>
 
 
-                <button onclick="location.href = 'deco'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
+                <button onclick="location.href = 'connexion'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
 
                     Se connecter
@@ -149,8 +149,26 @@
             </div>
             <br>
             <br>
-        </div>
-        
-
+            
+            <hr>
+            
+            <footer class="site-footer">
+                <!-- Mettre les liens vers les connexions administrateurs -->
+                <div  class = "row text-center">
+                    <div class = "col-sm-3">
+                        <a href="connexion" style="color: goldenrod"> Connexion conseiller </a>
+                    </div>
+                    <div class = "col-sm-3">
+                        <a href="connexion" style="color: goldenrod"> Connexion administrateur </a>
+                    </div>
+                    <div class = "col-sm-3" >
+                        <a href="#" style="color: goldenrod"> Mentions légales </a>
+                    </div>
+                    <div class = "col-sm-3">
+                        <a href="#" style="color: goldenrod"> Protection des données </a>
+                    </div>
+                </div>
+            </footer>
+        </div>      
     </body>
 </html>

@@ -31,11 +31,36 @@
         </div>
         
         <br>
-        <div class="container" style="background-color: white">
+        <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center">Comptes</h1>
-            <button class="btn btn-primary">Hello</button>
+            <h1 style="text-align: center; color: white">Vos comptes</h1>
+            <br><br>
+            
+            
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Visuel sur vos comptes</h2>
+                    <div class="card-body">
+                        <br>
+                        <h5 class="card-body" id="idmontantcompte" style="display: inline">Ici le numéro de compte</h5>
+                        <h5 class="card-body" id="idmontantcompte" style="display: inline">Ici le montant</h5>
+                        <h5 class="card-body" style="display: inline">€</h5>
+                        <br><br><br>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            
+          
+            
+
+
+
+
             
             
         </div>

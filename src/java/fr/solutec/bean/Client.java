@@ -22,13 +22,11 @@ public class Client {
     public Client() {
     }
 
-    public Client(int id, String nom, String prenom, String mail, String password, Image avatar) {
-        this.id = id;
+    public Client(String nom, String prenom, String mail, String password) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
         this.password = password;
-        this.avatar = avatar;
     }
 
     public int getId() {

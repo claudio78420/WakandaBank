@@ -27,11 +27,59 @@
         </div>
         
         <br>
-        <div class="container" style="background-color: white">
+        <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center">Contacter son conseiller</h1>
-            <button class="btn btn-primary">Hello</button>
+            <h1 style="text-align: center; color: white">Conseiller</h1>
+            <br><br>
+            
+            
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Envoyer un message</h2>
+                    <div class="card-body">
+                       <form style="text-align: center">
+                            <h4>Entrez votre message ci-dessous :</h4>
+                            <br>
+                                <textarea rows = "5" cols = "120" name = "description"></textarea>
+                                <br><br>
+                                <button class="btn btn-primary btn-block" id="benvoyermessage">Envoyer</button>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            
+            
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt=" " style="background: black; color: gold; padding-bottom: 3%"><br>Envoyer un mail<br></h2>
+                    <br>
+                    <div class="card-body">
+                        <form style="text-align: center">
+                            <h4>Entrez votre message ci-dessous :</h4>
+                            <br>
+                                <textarea rows = "5" cols = "120" name = "description"></textarea>
+                                <br><br>
+                                <button class="btn btn-primary btn-block" id="benvoyermail">Envoyer</button>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            
+          
+            
+
+
+
+
             
             
         </div>

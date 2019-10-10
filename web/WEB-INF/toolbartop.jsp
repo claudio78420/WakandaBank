@@ -4,6 +4,7 @@
     Author     : esic
 --%>
 
+<%@page import="fr.solutec.bean.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,19 +32,21 @@
     </head>
     <body>
         
-      <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
-        <a class="navbar-brand" href="#">
-            <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                Wakanda Bank
-            </button>
-        </a>
+      <nav class="navbar navbar-expand-lg" style="background-color: black; color: gold">  
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="">
-                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+            <a class="nav-item nav-link active" href="deco">
+                <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Accueil 
                 </button>
-                <span class="sr-only">(current)</span>
+            </a>
+              
+              
+              
+              <a class="nav-item nav-link active" href="" style="padding-left: 50%">
+                <button class ="btn btn-primary" style="color: gold; background-color: black">
+                    Bienvenue sur votre espace client, ${client.nom}
+                </button>
             </a>
 
 

@@ -27,19 +27,55 @@
         </div>
         
         <br>
-        <div class="container" style="background-color: white">
+        <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center">Plafond</h1>
-            <br><br><br><br>
+            <h1 style="text-align: center; color: white">Plafond</h1>
+            <br><br>
             
-            <h2>Votre plafond actuel :</h2>
             
-            <br><br><br><br>
-            
-            <div style="width: 60%">
-                <h4 style="text-align: center">Si vous souhaitez modifier votre plafond, veuillez faire la demande ci-dessous en entrant le montant du plafond souhaité :</h4>
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Votre plafond actuel</h2>
+                    <div class="card-body">
+                        <br>
+                        <h4 class="card-body" id="idplafondactuel" style="display: inline">Ici le plafond</h4>
+                        <h4 class="card-body" style="display: inline">€</h4>
+                        <br><br><br>
+                    </div>
+                </div>
             </div>
+            <br>
+            <br>
+            
+            
+            <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt=" " style="background: black; color: gold; padding-bottom: 3%"><br>Changement de plafond<br></h2>
+                    <br>
+                    <div class="card-body">
+                        <form style="text-align: center">
+                            <h4>Pour modifier votre plafond, veuillez faire la demande ci-dessous en entrant le montant du plafond souhaité :</h4>
+                            <br>
+                            <div style="width: 50%; margin: auto">
+                                <input type="number" id="idplafond" class="form-control text-center" placeholder="Montant  (€)">
+                                <br>
+                                <button class="btn btn-primary btn-block" id="bvaliderplafond">Faire la demande</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            
+          
+            
+
+
+
 
             
             

@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Client;
+import fr.solutec.dao.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,11 +63,18 @@ public class EspaceClientServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        try {
+        HttpSession session = request.getSession(true);
+        
+        Client c = (Client) session.getAttribute("clients");
+        
+        if(c!=null){
+            request.setAttribute("client", c);
             request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
+        }
+        else{
+            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
+            request.getRequestDispatcher("connexion.jsp").forward(request, response);
+
         }
         
     }
@@ -80,7 +90,25 @@ public class EspaceClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        
+        try {
+            String mail = request.getParameter("mail");
+            String password = request.getParameter("mdp");
+            Client c = ClientDao.getByLoginPass(mail, password);
+            
+            if(c!=null){
+                request.getSession(true).setAttribute("client", c);
+                response.sendRedirect("espaceclient");
+            }
+            else{
+                request.setAttribute("msg", "Login ou mot de passe incorrect.");
+                request.getRequestDispatcher("connexion.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
     }
 
     /**
