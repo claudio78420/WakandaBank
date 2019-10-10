@@ -34,7 +34,7 @@
       <nav class="navbar navbar-expand-lg" style="background-color: black; color: gold">  
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="">
+            <a class="nav-item nav-link active" href="deco">
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
                     Accueil 
                 </button>
@@ -42,9 +42,9 @@
               
               
               
-            <a class="nav-item nav-link active" href="">
+              <a class="nav-item nav-link active" href="" style="padding-left: 50%">
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
-                    Bienvenue dans votre espace client, ${personne.nom}
+                    Bienvenue sur votre espace client, ${client.nom}
                 </button>
             </a>
 
