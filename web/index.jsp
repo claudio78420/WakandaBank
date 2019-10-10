@@ -156,7 +156,7 @@
                 <!-- Mettre les liens vers les connexions administrateurs -->
                 <div  class = "row text-center">
                     <div class = "col-sm-3">
-                        <a href="connexion" style="color: goldenrod"> Connexion conseiller </a>
+                        <a href="connexioncons" style="color: goldenrod"> Connexion conseiller </a>
                     </div>
                     <div class = "col-sm-3">
                         <a href="connexionadmin" style="color: goldenrod"> Connexion administrateur </a>
