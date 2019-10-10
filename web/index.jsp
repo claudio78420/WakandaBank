@@ -56,7 +56,7 @@
             </a>
 
 
-                <button onclick="location.href = 'deco'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
+                <button onclick="location.href = 'connexion'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
 
                     Se connecter

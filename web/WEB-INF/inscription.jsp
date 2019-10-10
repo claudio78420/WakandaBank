@@ -64,9 +64,11 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
-                                    inscription
+                                    s'inscrire
                                 </button>
-                                <button type="button" class="btn btn-link"> Déjà client ? <br> Connectez-vous</button>
+                                <button type="button" onclick="location.href = 'connexion'" class="btn btn-primary" style ="color: black"> 
+                                    Déjà client ? <br> Connectez-vous
+                                </button>
                             </form>
                         </div>
                     </div>
