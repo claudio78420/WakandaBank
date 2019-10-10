@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Client;
+import fr.solutec.dao.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -72,7 +74,23 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mail = request.getParameter("mail");
+        String mdp = request.getParameter("mdp");
+        
+        Client c = new Client(nom, prenom, mail, mdp);
+        
+        try {
+            ClientDao.insertClient(c);
+            request.getSession(true).setAttribute("client", c);
+            response.sendRedirect("espaceclient");
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());            
+        }
+{
+        }
     }
 
     /**

@@ -5,6 +5,8 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.dao.ClientDao;
+import fr.solutec.bean.Client;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  *
@@ -72,7 +75,16 @@ public class ConnexionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String mail = request.getParameter("mail");
+        String password = request.getParameter("mdp");
+        Client c = new Client();
+        try {
+            ClientDao.getByLoginPass(mail, password);
+            request.getSession(true).setAttribute("client", c);
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
     }
 
     /**

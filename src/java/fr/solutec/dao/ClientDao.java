@@ -43,7 +43,7 @@ public class ClientDao {
     }
 
     public static void insertClient(Client client) throws SQLException {
-        String sql = "INSERT INTO user (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql);
         requette.setString(1, client.getNom());

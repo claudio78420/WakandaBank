@@ -42,11 +42,10 @@
                             Formulaire
                         </div>
                         <div class="card-body">
-                            <form action ="inscription" method="POST">
+                            <form action ="connexion" method="POST">
                                 <div class="form-group">
                                     <input type="email" placeholder="mail"
                                            required="" name="mail" class="form-control" 
-                                           value="${param['login']}">
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -55,9 +54,9 @@
                                 </div>
                                 <br>
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
-                                    s'inscrire
+                                    se connecter
                                 </button>
-                                <button type="button" class="btn btn-link"> se connecter</button>
+                                <button type="button" class="btn btn-link"> Pas encore client ? <br> Créer un compte</button>
                             </form>
                         </div>
                     </div>

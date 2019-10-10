@@ -44,9 +44,8 @@
                         <div class="card-body">
                             <form action ="inscription" method="POST">
                                 <div class="form-group">
-                                    <input type="email" placeholder="login"
-                                           required="" name="login" class="form-control" 
-                                           value="${param['login']}">
+                                    <input type="email" placeholder="mail"
+                                           required="" name="mail" class="form-control">
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -67,7 +66,7 @@
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
                                     inscription
                                 </button>
-                                <button type="button" class="btn btn-link"> connexion</button>
+                                <button type="button" class="btn btn-link"> Déjà client ? <br> Connectez-vous</button>
                             </form>
                         </div>
                     </div>
