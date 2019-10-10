@@ -54,8 +54,6 @@ public class CompteDao {
         interro.setString(1, Integer.toString(compte.getId()));
         ResultSet rs = interro.executeQuery();
         String new_status = "";
-        String old_status = "";
-        int type_modif = 0;
         if (rs.getBoolean("status")){
             new_status = "FALSE";
          }else{
@@ -75,6 +73,33 @@ public class CompteDao {
         swap.setDouble(1, new_decouvert);
         swap.setString(2, Integer.toString(compte.getId()));
         swap.execute();
+    }
+    
+    public static Double getSoldeCompte(Compte compte) throws SQLException{
+        Connection connexion = AccessBD.getConnection();
+        String sql_ask = "SELECT soldecompte AS solde FROM Compte WHERE idcompte=?";
+        PreparedStatement ask = connexion.prepareStatement(sql_ask);
+        ask.setString(1, Integer.toString(compte.getId()));
+        ResultSet rs = ask.executeQuery();
+        return rs.getDouble("solde");
+    }
+    
+    public static Double getDecouvertCompte(Compte compte) throws SQLException{
+        Connection connexion = AccessBD.getConnection();
+        String sql_ask = "SELECT decouvertcompte AS decouvert FROM Compte WHERE idcompte=?";
+        PreparedStatement ask = connexion.prepareStatement(sql_ask);
+        ask.setString(1, Integer.toString(compte.getId()));
+        ResultSet rs = ask.executeQuery();
+        return rs.getDouble("decouvert");
+    }
+    
+    public static Boolean getStatutCarteCompte(Compte compte) throws SQLException{
+        Connection connexion = AccessBD.getConnection();
+        String sql_ask = "SELECT statutcarte AS statut FROM Compte WHERE idcompte=?";
+        PreparedStatement ask = connexion.prepareStatement(sql_ask);
+        ask.setString(1, Integer.toString(compte.getId()));
+        ResultSet rs = ask.executeQuery();
+        return rs.getBoolean("statut");
     }
 }
 
