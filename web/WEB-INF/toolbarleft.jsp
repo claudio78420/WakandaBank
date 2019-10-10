@@ -29,6 +29,8 @@
           <a href="plafond">Plafond de découvert</a>
           <a href="contactconseiller">Nous contacter</a>
           <br>
+          <a href="mesinfos">Mes infos</a>
+          <br>
           <a href="deco">Déconnexion</a>
         </div>
     </body>

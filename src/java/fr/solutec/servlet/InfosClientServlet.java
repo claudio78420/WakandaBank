@@ -6,7 +6,6 @@
 package fr.solutec.servlet;
 
 import fr.solutec.bean.Client;
-import fr.solutec.dao.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "EspaceClientServlet", urlPatterns = {"/espaceclient"})
-public class EspaceClientServlet extends HttpServlet {
+@WebServlet(name = "InfosClientServlet", urlPatterns = {"/mesinfos"})
+public class InfosClientServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class EspaceClientServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceClientServlet</title>");            
+            out.println("<title>Servlet InfosClientServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EspaceClientServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet InfosClientServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,22 +60,11 @@ public class EspaceClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        request.getRequestDispatcher("WEB-INF/infosclient.jsp").forward(request, response);
         
-        HttpSession session = request.getSession(true);
-        
-        Client c = (Client) session.getAttribute("client");
-        
-        if(c!=null){
-            
-            request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
-        }
-        else{
-            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("connexion.jsp").forward(request, response);
 
-        }
-        
+        HttpSession session = request.getSession(true);
+
     }
 
     /**
@@ -90,8 +78,7 @@ public class EspaceClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
+        processRequest(request, response);
     }
 
     /**
