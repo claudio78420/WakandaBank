@@ -6,9 +6,14 @@
 package fr.solutec.servlet;
 
 import fr.solutec.bean.Client;
+import fr.solutec.bean.Compte;
+import fr.solutec.bean.Conseiller;
 import fr.solutec.dao.ClientDao;
+import fr.solutec.dao.CompteDao;
+import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,8 +73,12 @@ public class EspaceClientServlet extends HttpServlet {
         Client c = (Client) session.getAttribute("client");
         
         if(c!=null){
-            
+            try {
+            List<Compte> comptes = CompteDao.getComptesClient(c);
+            request.setAttribute("listecomptes", comptes);
             request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
         }
         else{
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
