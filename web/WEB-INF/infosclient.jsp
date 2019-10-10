@@ -47,23 +47,32 @@
                             
                             <div>
                                 <h5>Nom :</h5>
-                                    <br>
-                                    <input type="text" id="auto" class="form-control text-center" placeholder="Nom" value="${client.nom}">
+                                <br>
+                                <input type="text" id="auto" class="form-control text-center" placeholder="Nom" value="${client.nom}">
                             </div>
                             <br><br>
                             <div>
-                                    <h5>Prénom :</h5>
-                                    <br>
-                                    <input type="text" id="auto" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
+                                <h5>Prénom :</h5>
+                                <br>
+                                <input type="text" id="auto" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
                             </div>
                             <br><br>
                             <div>
-                                    <h5>Mail :</h5>
-                                    <br>
-                                    <input type="text" id="auto" class="form-control text-center" placeholder="Mail" value="${client.mail}">
+                                <h5>Mail :</h5>
+                                <br>
+                                <input type="text" id="auto" class="form-control text-center" placeholder="Mail" value="${client.mail}">
                             </div>
                             <br><br>
+                            <div>
+                                <h5>Password :</h5>
+                                <br>
+                                <input type="text" id="auto" class="form-control text-center" placeholder="Mot de passe">
+                            </div>
+                            <br><br>
+                            <div>
+                                <button type="submit" class="btn btn-primary btn-block" id="validerinfos">Enregistrer</button>
 
+                            </div>
                         
                                 
                                
