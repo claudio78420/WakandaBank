@@ -30,7 +30,7 @@
         <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center; color: white">Conseiller</h1>
+            <h1 style="text-align: center; color: white">Contacter son conseiller</h1>
             <br><br>
             
             
@@ -44,7 +44,7 @@
                             <br>
                                 <textarea rows = "5" cols = "120" name = "description"></textarea>
                                 <br><br>
-                                <button class="btn btn-primary btn-block" id="benvoyermessage">Envoyer</button>
+                                <button class="btn btn-primary btn-block" id="benvoyermessage" style="width: 20%; margin: auto">Envoyer</button>
                            
                         </form>
                     </div>
@@ -65,7 +65,7 @@
                             <br>
                                 <textarea rows = "5" cols = "120" name = "description"></textarea>
                                 <br><br>
-                                <button class="btn btn-primary btn-block" id="benvoyermail">Envoyer</button>
+                                <button class="btn btn-primary btn-block" id="benvoyermail" style="width: 20%; margin: auto">Envoyer</button>
                            
                         </form>
                     </div>

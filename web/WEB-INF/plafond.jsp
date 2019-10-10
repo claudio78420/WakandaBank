@@ -30,7 +30,7 @@
         <div class="container backgroundcontainer">
             <br>
             
-            <h1 style="text-align: center; color: white">Plafond</h1>
+            <h1 style="text-align: center; color: white">Plafond de découvert</h1>
             <br><br>
             
             
@@ -57,7 +57,7 @@
                     <br>
                     <div class="card-body">
                         <form style="text-align: center">
-                            <h4>Pour modifier votre plafond, veuillez faire la demande ci-dessous en entrant le montant du plafond souhaité :</h4>
+                            <h4>Pour modifier votre plafond d'autorisation de découvert, veuillez faire la demande ci-dessous en entrant le montant du plafond souhaité :</h4>
                             <br>
                             <div style="width: 50%; margin: auto">
                                 <input type="number" id="idplafond" class="form-control text-center" placeholder="Montant  (€)">
