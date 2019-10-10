@@ -25,9 +25,9 @@
             </div>
             <br><br><br>
             
-          <a href="espaceclient">Comptes</a>
-          <a href="plafond">Plafond</a>
-          <a href="contactconseiller">Conseiller</a>
+          <a href="espaceclient">Mes Comptes</a>
+          <a href="plafond">Plafond de découvert</a>
+          <a href="contactconseiller">Nous contacter</a>
           <br>
           <a href="deco">Déconnexion</a>
         </div>

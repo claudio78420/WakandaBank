@@ -1,10 +1,9 @@
 <%-- 
-    Document   : menu
-    Created on : 8 oct. 2019, 17:10:22
+    Document   : toolbartopadmin
+    Created on : 10 oct. 2019, 13:31:24
     Author     : esic
 --%>
 
-<%@page import="fr.solutec.bean.Client"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -43,9 +42,16 @@
               
               
               
-              <a class="nav-item nav-link active" href="" style="margin-left: 70%">
+            <a class="nav-item nav-link active" href="" style="margin-left: 70%">
                 <button class ="btn btn-primary" style="color: gold; background-color: black">
-                    Bienvenue sur votre espace client, ${client.nom}
+                    Bienvenue sur votre espace admin, ${administrateur.nom}
+                </button>
+            </a>
+                
+                
+            <a class="nav-item nav-link active" href="deco" style="margin-left: 55%">
+                <button class ="btn btn-primary" style="color: gold; background-color: black">
+                    Déconnexion
                 </button>
             </a>
 
