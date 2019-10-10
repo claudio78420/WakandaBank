@@ -12,7 +12,7 @@ import java.awt.Image;
  * @author TLeMet
  */
 public class Client {
-    int idclient;
+    int id;
     String nom;
     String prenom;
     String mail;
@@ -30,12 +30,12 @@ public class Client {
         this.password = password;
     }
 
-    public int getIdclient() {
-        return idclient;
+    public int getId() {
+        return id;
     }
 
-    public void setIdclient(int idclient) {
-        this.idclient = idclient;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -88,6 +88,6 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + ", idcons=" + idcons + '}';
+        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + ", idcons=" + idcons + '}';
     }
 }

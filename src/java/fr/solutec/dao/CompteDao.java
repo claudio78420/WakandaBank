@@ -32,7 +32,7 @@ public class CompteDao {
         insertion.setBoolean(3, compte.isStatut());
         insertion.setDouble(4, compte.getDecouvert());
         insertion.setDouble(5, compte.getSolde());
-        insertion.setInt(5, client.getIdclient());
+        insertion.setInt(5, client.getId());
         insertion.execute();
     }
     
@@ -108,10 +108,10 @@ public class CompteDao {
     public static List<Compte> getComptesClient(Client client) throws SQLException{
        List<Compte> result = new ArrayList<>();
         Connection connexion = AccessBD.getConnection();
-        String sql = "SELECT * FROM Compte WHERE idclient=?";
-        PreparedStatement requette = connexion.prepareStatement(sql);
-        sql.setString(1, Integer.toString(client.getIdclient()));
-        ResultSet rs = requette.executeQuery();
+        String sql_ask = "SELECT * FROM Compte WHERE idclient=?";
+        PreparedStatement ask = connexion.prepareStatement(sql_ask);
+        ask.setInt(1, client.getId());
+        ResultSet rs = ask.executeQuery();
         while (rs.next()) {
             Compte c = new Compte();
             c.setId(rs.getInt("idcompte"));
