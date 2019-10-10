@@ -12,12 +12,13 @@ import java.awt.Image;
  * @author TLeMet
  */
 public class Client {
-    int id;
+    int idclient;
     String nom;
     String prenom;
     String mail;
     String password;
     Image avatar;
+    int idcons;
 
     public Client() {
     }
@@ -29,12 +30,12 @@ public class Client {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
+    public int getIdclient() {
+        return idclient;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdclient(int idclient) {
+        this.idclient = idclient;
     }
 
     public String getNom() {
@@ -76,9 +77,17 @@ public class Client {
     public void setAvatar(Image avatar) {
         this.avatar = avatar;
     }
+    
+    public int getIdcons() {
+        return idcons;
+    }
+
+    public void setIdcons(int idcons) {
+        this.idcons = idcons;
+    }
 
     @Override
     public String toString() {
-        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + '}';
+        return "Client{" + "id=" + idclient + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + ", idcons=" + idcons + '}';
     }
 }

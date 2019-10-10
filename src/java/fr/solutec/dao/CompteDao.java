@@ -29,7 +29,7 @@ public class CompteDao {
         insertion.setBoolean(3, compte.isStatut());
         insertion.setDouble(4, compte.getDecouvert());
         insertion.setDouble(5, compte.getSolde());
-        insertion.setInt(5, client.getId());
+        insertion.setInt(5, client.getIdclient());
         insertion.execute();
     }
     

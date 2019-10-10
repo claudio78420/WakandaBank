@@ -34,7 +34,7 @@ public class ClientDao {
 
         if (rs.next()) {
             resultat = new Client();
-            resultat.setId(rs.getInt("idclient"));
+            resultat.setIdclient(rs.getInt("idclient"));
             resultat.setNom(rs.getString("nomclient"));
             resultat.setPrenom(rs.getString("prenomclient"));
             resultat.setMail(rs.getString("mailclient"));
@@ -50,6 +50,7 @@ public class ClientDao {
         requette.setString(2, client.getPrenom());
         requette.setString(3, client.getMail());
         requette.setString(4, client.getPassword());
+        requette.setInt(4, client.getIdcons());
 
         requette.execute();
     }
@@ -66,10 +67,11 @@ public class ClientDao {
 
         while (rs.next()) {
             Client c = new Client();
-            c.setId(rs.getInt("idclient"));
+            c.setIdclient(rs.getInt("idclient"));
             c.setNom(rs.getString("nomclient"));
             c.setPrenom(rs.getString("prenomclient"));
             c.setMail(rs.getString("mailclient"));
+            c.setIdcons(rs.getInt("idcons"));
 
             result.add(c);
         }

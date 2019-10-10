@@ -75,6 +75,28 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Administrateur` (
   PRIMARY KEY (`idadmin`))
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `WakandaBank`.`Communication`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `WakandaBank`.`Communication` ;
+
+CREATE TABLE IF NOT EXISTS `WakandaBank`.`Communication` (
+  `idcomm` INT NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `message` TEXT,
+  `cli2co` BOOLEAN NOT NULL,
+  `read` BOOLEAN NOT NULL DEFAULT 0,
+  `idclient` INT NOT NULL,
+  `idcons` INT NOT NULL,
+  PRIMARY KEY (`idcomm`),
+  CONSTRAINT `fk_Communication_Client`
+    FOREIGN KEY (`idclient`)
+    REFERENCES `WakandaBank`.`Client` (`idclient`),
+  CONSTRAINT `fk_Communication_Conseiller`
+	FOREIGN KEY (`idcons`)
+	REFERENCES `WakandaBank`.`Conseiller` (`idcons`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `WakandaBank`.`Compte`
@@ -106,7 +128,6 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Types_modif` (
   PRIMARY KEY (`idmodif`))
 ENGINE = InnoDB;
 
-INSERT INTO `wakandabank`.`Types_modif` (`idmodif`, `libelle`) VALUES ('1', 'Solde'), ('2', 'Plafond de Découvert'), ('3', 'Statut Carte'), ('4', 'Nom'), ('5', 'Mot de passe');
 
 
 -- -----------------------------------------------------
@@ -116,7 +137,7 @@ DROP TABLE IF EXISTS `WakandaBank`.`Historique_chiffres` ;
 
 CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
   `idchiffres` INT NOT NULL AUTO_INCREMENT,
-  `date` DATETIME NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ancien` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `nouveau` DECIMAL(10,2) NOT NULL DEFAULT 0,
   `idmodif` INT NOT NULL,
@@ -129,6 +150,73 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_chiffres` (
 	FOREIGN KEY (`idcompte`)
 	REFERENCES `WakandaBank`.`Compte` (`idcompte`))
 ENGINE = InnoDB;
+
+
+
+
+-- -----------------------------------------------------
+-- Table `WakandaBank`.`Historique_profils`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `WakandaBank`.`Historique_profils` ;
+
+CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_profils` (
+  `idprofils` INT NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ancien` VARCHAR(45) NOT NULL DEFAULT 0,
+  `nouveau` VARCHAR(45) NOT NULL DEFAULT 0,
+  `idmodif` INT NOT NULL,
+  `idclient` INT NOT NULL,
+  PRIMARY KEY (`idprofils`),
+  CONSTRAINT `fk_HistoriqueProfil_Type`
+    FOREIGN KEY (`idmodif`)
+    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
+  CONSTRAINT `fk_HistoriqueProfil_Client`
+    FOREIGN KEY (`idclient`)
+    REFERENCES `WakandaBank`.`Client` (`idclient`))
+ENGINE = InnoDB;
+
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Test values
+-- -----------------------------------------------------
+
+
+
+DROP PROCEDURE IF EXISTS gothomas$$
+CREATE PROCEDURE gothomas()
+BEGIN
+ -- Déclarer l'exception
+ DECLARE violation_contrainte CONDITION FOR SQLSTATE '23000';
+ -- Puis son interception
+ DECLARE EXIT HANDLER FOR violation_contrainte
+ BEGIN
+ -- Annuler la transaction
+ROLLBACK;
+ SELECT 'Opération annullée';
+ END;
+ START TRANSACTION;
+ INSERT INTO `wakandabank`.`Types_modif` (`idmodif`, `libelle`) VALUES ('1', 'Solde'), ('2', 'Plafond de Découvert'), ('3', 'Statut Carte'), ('4', 'Nom'), ('5', 'Mot de passe');
+INSERT INTO `wakandabank`.`administrateur` (`idadmin`, `nomadmin`, `prenomadmin`, `passwordadmin`, `mailadmin`) VALUES ('1', 'Admin', 'Test', 'admin', 'test@admin');
+
+INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('1', 'Cons1', 'Test1', 'cons1@test', 'test1');
+INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('2', 'Cons2', 'Test2', 'cons2@test', 'test2');
+
+INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('1', 'Client1', 'Test1', 'client1@test', 'test1', '1');
+INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('2', 'Client2', 'Test2', 'client2@test', 'test2', '1');
+INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('3', 'Client3', 'Test3', 'client3@test', 'test3', '2');
+
+INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('111111111111', '1111111111111111', '1', '0', '420.69', '1');
+INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('222222222222', '2222222222222222', '1', '0', '0', '2');
+INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('333333333333', '3333333333333333', '0', '500', '0', '1');
+
+ COMMIT;
+END$$
 
 DROP TRIGGER IF EXISTS update_log_chiffres $$
 CREATE TRIGGER update_log_chiffres
@@ -152,28 +240,8 @@ BEGIN
     END IF;
 END $$
 
--- -----------------------------------------------------
--- Table `WakandaBank`.`Historique_profils`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `WakandaBank`.`Historique_profils` ;
-
-CREATE TABLE IF NOT EXISTS `WakandaBank`.`Historique_profils` (
-  `idprofils` INT NOT NULL AUTO_INCREMENT,
-  `date` DATETIME NOT NULL,
-  `ancien` VARCHAR(45) NOT NULL DEFAULT 0,
-  `nouveau` VARCHAR(45) NOT NULL DEFAULT 0,
-  `idmodif` INT NOT NULL,
-  `idclient` INT NOT NULL,
-  PRIMARY KEY (`idprofils`),
-  CONSTRAINT `fk_HistoriqueProfil_Type`
-    FOREIGN KEY (`idmodif`)
-    REFERENCES `WakandaBank`.`Types_modif` (`idmodif`),
-  CONSTRAINT `fk_HistoriqueProfil_Client`
-    FOREIGN KEY (`idclient`)
-    REFERENCES `WakandaBank`.`Client` (`idclient`))
-ENGINE = InnoDB;
-
 DROP TRIGGER IF EXISTS update_log_profils $$
+
 CREATE TRIGGER update_log_profils
 AFTER UPDATE
 ON `WakandaBank`.`Client`
@@ -190,25 +258,4 @@ BEGIN
     END IF;
 END $$
 
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
--- -----------------------------------------------------
--- Test values
--- -----------------------------------------------------
-
-INSERT INTO `wakandabank`.`administrateur` (`idadmin`, `nomadmin`, `prenomadmin`, `passwordadmin`, `mailadmin`) VALUES ('1', 'Admin', 'Test', 'admin', 'test@admin');
-
-INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('1', 'Cons1', 'Test1', 'cons1@test', 'test1');
-INSERT INTO `wakandabank`.`conseiller` (`idcons`, `nomcons`, `prenomcons`, `mailcons`, `passwordcons`) VALUES ('2', 'Cons2', 'Test2', 'cons2@test', 'test2');
-
-INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('1', 'Client1', 'Test1', 'client1@test', 'test1', '1');
-INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('2', 'Client2', 'Test2', 'client2@test', 'test2', '1');
-INSERT INTO `wakandabank`.`client` (`idclient`, `nomclient`, `prenomclient`, `mailclient`, `passwordclient`, `idcons`) VALUES ('3', 'Client3', 'Test3', 'client3@test', 'test3', '2');
-
-INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('111111111111', '1111111111111111', '1', '0', '420.69', '1');
-INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('222222222222', '2222222222222222', '1', '0', '0', '2');
-INSERT INTO `wakandabank`.`compte` (`idcompte`, `idcarte`, `statutcarte`, `decouvertcompte`, `soldecompte`, `idclient`) VALUES ('333333333333', '3333333333333333', '0', '500', '0', '1');
+call gothomas()
