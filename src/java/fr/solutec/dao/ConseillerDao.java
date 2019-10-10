@@ -5,7 +5,6 @@
  */
 package fr.solutec.dao;
 
-import fr.solutec.bean.Compte;
 import fr.solutec.bean.Conseiller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,6 +52,42 @@ public class ConseillerDao {
     public static List<Conseiller> getAllCons() throws SQLException {
         List<Conseiller> result = new ArrayList<>();
         String sql = "SELECT * FROM Conseiller";
+        Connection connexion = AccessBD.getConnection();
+        Statement requette = connexion.createStatement();
+        ResultSet rs = requette.executeQuery(sql);
+        while (rs.next()) {
+            Conseiller c = new Conseiller();
+            c.setId(rs.getInt("idcons"));
+            c.setNom(rs.getString("nomcons"));
+            c.setPrenom(rs.getString("prenomcons"));
+            c.setMail(rs.getString("mailcons"));
+
+            result.add(c);
+        }
+        return result;
+    }
+    
+    public static List<Conseiller> getActiveCons() throws SQLException {
+        List<Conseiller> result = new ArrayList<>();
+        String sql = "SELECT * FROM Conseiller WHERE statutcons=1";
+        Connection connexion = AccessBD.getConnection();
+        Statement requette = connexion.createStatement();
+        ResultSet rs = requette.executeQuery(sql);
+        while (rs.next()) {
+            Conseiller c = new Conseiller();
+            c.setId(rs.getInt("idcons"));
+            c.setNom(rs.getString("nomcons"));
+            c.setPrenom(rs.getString("prenomcons"));
+            c.setMail(rs.getString("mailcons"));
+
+            result.add(c);
+        }
+        return result;
+    }
+    
+    public static List<Conseiller> getDisabledCons() throws SQLException {
+        List<Conseiller> result = new ArrayList<>();
+        String sql = "SELECT * FROM Conseiller WHERE statutcons=0";
         Connection connexion = AccessBD.getConnection();
         Statement requette = connexion.createStatement();
         ResultSet rs = requette.executeQuery(sql);
