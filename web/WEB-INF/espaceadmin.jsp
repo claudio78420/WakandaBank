@@ -52,6 +52,7 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Mail</th>
+                                    <th>Modifier</th>
                                     <th>Désactiver</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,7 @@
                                         <td>${m.nom}</td>
                                         <td>${m.prenom}</td>
                                         <td>${m.mail}</td>
+                                        <td><button class="btn btn-primary">Modifier</button></td>
                                         <td><button class="btn btn-primary">Désactiver</button></td>
                                     </tr>
                                 </c:forEach>
@@ -74,7 +76,17 @@
                 </div>
             </div>
             <br>
-            <br>    
+            <br>  
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
@@ -88,6 +100,7 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Mail</th>
+                                    <th>Modifier</th>
                                     <th>Activer</th>
                                 </tr>
                             </thead>
@@ -100,6 +113,7 @@
                                         <td>${p.nom}</td>
                                         <td>${p.prenom}</td>
                                         <td>${p.mail}</td>
+                                        <td><button class="btn btn-primary">Modifier</button></td>
                                         <td><button class="btn btn-primary">Activer</button></td>
                                     </tr>
                                 </c:forEach>
@@ -107,6 +121,46 @@
                         </table>
                         
                         
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+            <br>
+            
+            
+            
+            
+                        <div class="col d-flex justify-content-center">
+                <div class="card text-center" style="width: 100%;
+                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Créer un compte conseiller</h2>
+                    <div class="card-body text-center"> 
+                        <form action ="espaceadmin" method="POST" class='text-center'>
+                            <div class="form-group text-center">
+                                <input type="email" placeholder="mail"
+                                       required="" name="mail" class="form-control text-center">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" placeholder="nom"
+                                       required="" name="nom" class="form-control text-center">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="text" placeholder="prénom"
+                                       required="" name="prenom" class="form-control text-center">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <input type="password" placeholder="mot de passe"
+                                       required="" name="mdp" class="form-control text-center">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary" style="color: goldenrod" >
+                                Créer
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -97,6 +97,21 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mail = request.getParameter("mail");
+        String mdp = request.getParameter("mdp");
+        
+        Conseiller co = new Conseiller(nom, prenom, mail, mdp);
+        
+        try {
+            ConseillerDao.insertConnseiller(co);
+            response.sendRedirect("espaceadmin");
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());            
+        }
 
     }
 
