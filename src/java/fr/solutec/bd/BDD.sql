@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Conseiller` (
   `prenomcons` VARCHAR(45) NOT NULL,
   `mailcons` VARCHAR(45) NOT NULL,
   `passwordcons` VARCHAR(45) NOT NULL,
+  `statutcons` BOOLEAN NOT NULL DEFAULT 1,
   `photocons` BLOB,
   PRIMARY KEY (`idcons`))
 ENGINE = InnoDB;
