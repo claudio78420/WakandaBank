@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  *
@@ -22,16 +23,12 @@ public class ClientDao {
 
     public static Client getByLoginPass(String login, String password) throws SQLException {
         Client resultat = null;
-
         String sql = "SELECT * FROM Client WHERE mailclient=? AND passwordclient=?";
         Connection connexion = AccessBD.getConnection();
-
         PreparedStatement requette = connexion.prepareStatement(sql);
         requette.setString(1, login);
         requette.setString(2, password);
-
         ResultSet rs = requette.executeQuery();
-
         if (rs.next()) {
             resultat = new Client();
             resultat.setId(rs.getInt("idclient"));
@@ -43,28 +40,30 @@ public class ClientDao {
     }
 
     public static void insertClient(Client client) throws SQLException {
-        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
+        int many_cons = 1;
+        String sql_cons = "SELECT COUNT(*) AS total FROM Conseiller";
         Connection connexion = AccessBD.getConnection();
-        PreparedStatement requette = connexion.prepareStatement(sql);
-        requette.setString(1, client.getNom());
-        requette.setString(2, client.getPrenom());
-        requette.setString(3, client.getMail());
-        requette.setString(4, client.getPassword());
-        requette.setInt(4, client.getIdcons());
-
-        requette.execute();
+        PreparedStatement comptage = connexion.prepareStatement(sql_cons);
+        ResultSet rs = comptage.executeQuery();
+        many_cons = rs.getInt("total");
+        Connection connexion2 = AccessBD.getConnection();
+        int random_cons = ThreadLocalRandom.current().nextInt(1,many_cons);        
+        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
+        PreparedStatement insertion = connexion2.prepareStatement(sql);
+        insertion.setString(1, client.getNom());
+        insertion.setString(2, client.getPrenom());
+        insertion.setString(3, client.getMail());
+        insertion.setString(4, client.getPassword());
+        insertion.setInt(5, random_cons);
+        insertion.execute();
     }
 
     public static List<Client> getAllClients() throws SQLException {
         List<Client> result = new ArrayList<>();
-
         String sql = "SELECT * FROM Client";
         Connection connexion = AccessBD.getConnection();
-
         PreparedStatement requette = connexion.prepareStatement(sql);
-
         ResultSet rs = requette.executeQuery();
-
         while (rs.next()) {
             Client c = new Client();
             c.setId(rs.getInt("idclient"));
@@ -72,10 +71,8 @@ public class ClientDao {
             c.setPrenom(rs.getString("prenomclient"));
             c.setMail(rs.getString("mailclient"));
             c.setIdcons(rs.getInt("idcons"));
-
             result.add(c);
         }
-
         return result;
     }
 
