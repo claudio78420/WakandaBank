@@ -56,7 +56,9 @@
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
                                     se connecter
                                 </button>
-                                <button type="button" class="btn btn-link"> Pas encore client ? <br> Créer un compte</button>
+                                <button type="button" onclick="location.href = 'inscription'" class="btn btn-primary" style ="color: black"> 
+                                    Pas encore client ? <br> Créer un compte
+                                </button>
                             </form>
                         </div>
                     </div>
