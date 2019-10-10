@@ -18,6 +18,7 @@ public class Conseiller {
     String mail;
     String password;
     Image avatar;
+    Boolean statut;
 
     public Conseiller() {
     }
@@ -77,8 +78,16 @@ public class Conseiller {
         this.avatar = avatar;
     }
 
+    public Boolean getStatut() {
+        return statut;
+    }
+
+    public void setStatut(Boolean statut) {
+        this.statut = statut;
+    }
+
     @Override
     public String toString() {
-        return "Conseiller{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + '}';
+        return "Conseiller{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", password=" + password + ", avatar=" + avatar + ", statut=" + statut + '}';
     }    
 }

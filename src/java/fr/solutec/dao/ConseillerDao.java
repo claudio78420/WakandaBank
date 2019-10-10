@@ -5,6 +5,7 @@
  */
 package fr.solutec.dao;
 
+import fr.solutec.bean.Compte;
 import fr.solutec.bean.Conseiller;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,16 +23,12 @@ public class ConseillerDao {
 
     public static Conseiller getByLoginPass(String login, String password) throws SQLException {
         Conseiller resultat = null;
-
         String sql = "SELECT * FROM Conseiller WHERE mailcons=? AND passwordcons=?";
         Connection connexion = AccessBD.getConnection();
-
         PreparedStatement requette = connexion.prepareStatement(sql);
         requette.setString(1, login);
         requette.setString(2, password);
-
         ResultSet rs = requette.executeQuery();
-
         if (rs.next()) {
             resultat = new Conseiller();
             resultat.setId(rs.getInt("idcons"));
@@ -50,20 +47,15 @@ public class ConseillerDao {
         requette.setString(2, cons.getPrenom());
         requette.setString(3, cons.getMail());
         requette.setString(4, cons.getPassword());
-
         requette.execute();
     }
 
     public static List<Conseiller> getAllCons() throws SQLException {
         List<Conseiller> result = new ArrayList<>();
-
         String sql = "SELECT * FROM Conseiller";
         Connection connexion = AccessBD.getConnection();
-
         Statement requette = connexion.createStatement();
-
         ResultSet rs = requette.executeQuery(sql);
-
         while (rs.next()) {
             Conseiller c = new Conseiller();
             c.setId(rs.getInt("idcons"));
@@ -73,8 +65,26 @@ public class ConseillerDao {
 
             result.add(c);
         }
-
         return result;
+    }
+    
+    public static void switchCons(Conseiller cons) throws SQLException {
+        String sql_interro = "SELECT statutcons AS status FROM Conseiller WHERE idcons=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement interro = connexion.prepareStatement(sql_interro);
+        interro.setString(1, Long.toString(cons.getId()));
+        ResultSet rs = interro.executeQuery();
+        String new_status = "";
+        if (rs.getBoolean("status")){
+            new_status = "FALSE";
+         }else{
+            new_status = "TRUE";
+        }
+        String sql_swap = "UPDATE Conseiller SET statutcons=? WHERE idcons=?";
+        PreparedStatement swap = connexion.prepareStatement(sql_swap);
+        swap.setString(1, new_status);
+        swap.setString(2, Integer.toString(cons.getId()));
+        swap.execute();
     }
 
 }
