@@ -66,7 +66,7 @@
                                 <button type="submit" class="btn btn-primary" style="color: goldenrod" >
                                     inscription
                                 </button>
-                                <button type="button" class="btn btn-link"> connexion</button>
+                                <button type="button" class="btn btn-link"> Déjà client ? <br> Connectez-vous</button>
                             </form>
                         </div>
                     </div>
