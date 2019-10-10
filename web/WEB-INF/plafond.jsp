@@ -40,7 +40,7 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Votre plafond actuel</h2>
                     <div class="card-body">
                         <br>
-                        <h4 class="card-body" id="idplafondactuel" style="display: inline">Ici le plafond</h4>
+                        <h4 class="card-body" id="idplafondactuel" style="display: inline">Ici les plafonds</h4>
                         <h4 class="card-body" style="display: inline">€</h4>
                         <br><br><br>
                     </div>

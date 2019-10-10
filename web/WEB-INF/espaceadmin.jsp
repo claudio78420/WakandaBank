@@ -52,17 +52,19 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Mail</th>
+                                    <th>Désactiver</th>
                                 </tr>
                             </thead>
                             
 
                             <tbody>
-                                <c:forEach items="${listeconseillers}" var="m">
+                                <c:forEach items="${listeconseillersactives}" var="m">
                                     <tr>
                                         <th scope="row">${m.id}</th>
                                         <td>${m.nom}</td>
                                         <td>${m.prenom}</td>
                                         <td>${m.mail}</td>
+                                        <td><button class="btn btn-primary">Désactiver</button></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -78,6 +80,33 @@
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Conseillers désactivés</h2>
                     <div class="card-body"> 
+                        
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Mail</th>
+                                    <th>Activer</th>
+                                </tr>
+                            </thead>
+                            
+
+                            <tbody>
+                                <c:forEach items="${listeconseillersdesactives}" var="p">
+                                    <tr>
+                                        <th scope="row">${p.id}</th>
+                                        <td>${p.nom}</td>
+                                        <td>${p.prenom}</td>
+                                        <td>${p.mail}</td>
+                                        <td><button class="btn btn-primary">Activer</button></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                        
+                        
                     </div>
                 </div>
             </div>

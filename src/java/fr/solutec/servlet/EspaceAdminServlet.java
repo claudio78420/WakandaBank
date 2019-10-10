@@ -70,9 +70,11 @@ public class EspaceAdminServlet extends HttpServlet {
 
         if (a != null) {
             try {
-                List<Conseiller> conseillers = ConseillerDao.getAllCons();
+                List<Conseiller> conseillersactives = ConseillerDao.getAllCons();
+                List<Conseiller> conseillersdesactives = ConseillerDao.getAllCons();
                 request.setAttribute("administrateur", a);
-                request.setAttribute("listeconseillers", conseillers);
+                request.setAttribute("listeconseillersactives", conseillersactives);
+                request.setAttribute("listeconseillersdesactives", conseillersdesactives);
                 request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
             } catch (Exception e) {
             }
