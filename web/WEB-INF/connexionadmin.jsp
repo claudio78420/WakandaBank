@@ -32,7 +32,7 @@
         
         <div class="container text-center">
         <br>
-        <h2 style = "color:goldenrod"> Connexion </h2>
+        <h2 style = "color:goldenrod"> Connexion Administrateur</h2>
         <br>
             <div class="row">
                 <div class="col d-flex justify-content-center">
@@ -42,7 +42,7 @@
                             Formulaire
                         </div>
                         <div class="card-body">
-                            <form action ="espaceclient" method="POST">
+                            <form action ="connexionadmin" method="POST">
                                 <div class="form-group">
                                     <input type="email" placeholder="mail"
                                            required="" name="mail" class="form-control" 
@@ -54,11 +54,8 @@
                                 </div>
                                 <br>
                                 <h5 id="msg" value="msg"></h5>
-                                <button type="submit" class="btn btn-primary" style="color: goldenrod" >
+                                <button type="submit" class="btn btn-primary text-center" style="color: goldenrod" >
                                     se connecter
-                                </button>
-                                <button type="button" onclick="location.href = 'inscription'" class="btn btn-primary" style ="color: black"> 
-                                    Pas encore client ? <br> Créer un compte
                                 </button>
                             </form>
                         </div>
