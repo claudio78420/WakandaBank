@@ -38,7 +38,7 @@ public class ConseillerDao {
         return resultat;
     }
 
-    public static void insertConnseiller(Conseiller cons) throws SQLException {
+    public static void insertConseiller(Conseiller cons) throws SQLException {
         String sql = "INSERT INTO Conseiller (nomcons, prenomcons, mailcons, passwordcons) VALUES (?, ?, ?, ?)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql);
@@ -47,6 +47,15 @@ public class ConseillerDao {
         requette.setString(3, cons.getMail());
         requette.setString(4, cons.getPassword());
         requette.execute();
+    }
+    
+    public static void editConseillerPassword(Conseiller cons, String new_pw) throws SQLException{
+        String sql_edit = "UPDATE Conseiller SET passwordcons=? WHERE idcons=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement pw_edit = connexion.prepareStatement(sql_edit);
+        pw_edit.setString(1, new_pw);
+        pw_edit.setString(2, String.valueOf(cons.getId()));
+        pw_edit.execute();
     }
 
     public static List<Conseiller> getAllCons() throws SQLException {
@@ -61,7 +70,6 @@ public class ConseillerDao {
             c.setNom(rs.getString("nomcons"));
             c.setPrenom(rs.getString("prenomcons"));
             c.setMail(rs.getString("mailcons"));
-
             result.add(c);
         }
         return result;
@@ -79,7 +87,6 @@ public class ConseillerDao {
             c.setNom(rs.getString("nomcons"));
             c.setPrenom(rs.getString("prenomcons"));
             c.setMail(rs.getString("mailcons"));
-
             result.add(c);
         }
         return result;
@@ -97,7 +104,6 @@ public class ConseillerDao {
             c.setNom(rs.getString("nomcons"));
             c.setPrenom(rs.getString("prenomcons"));
             c.setMail(rs.getString("mailcons"));
-
             result.add(c);
         }
         return result;

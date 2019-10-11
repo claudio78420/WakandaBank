@@ -80,13 +80,19 @@ public class ConnexionServlet extends HttpServlet {
         String mdp = request.getParameter("mdp");
         Client c = new Client();
         
-        try {
-            c = ClientDao.getByLoginPass(mail, mdp);
-            request.getSession(true).setAttribute("client", c);
-            response.sendRedirect("espaceclient");
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
+        if(c!=null){
+            try {
+                c = ClientDao.getByLoginPass(mail, mdp);
+                request.getSession(true).setAttribute("client", c);
+                response.sendRedirect("espaceclient");
+            }
+            catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println(e.getMessage());
+            }
+        }
+        else{
+            request.setAttribute("lpincorrect", "Login ou mot de passe incorrect");
         }
     }
     @Override

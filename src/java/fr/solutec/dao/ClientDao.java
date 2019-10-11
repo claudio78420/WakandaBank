@@ -6,11 +6,11 @@
 package fr.solutec.dao;
 
 import fr.solutec.bean.Client;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -46,11 +46,12 @@ public class ClientDao {
         Connection connexion = AccessBD.getConnection();
         PreparedStatement comptage = connexion.prepareStatement(sql_cons);
         ResultSet rs = comptage.executeQuery();
-        rs.next();
-        many_cons = rs.getInt("total");
+        if (rs.next()){
+            many_cons = rs.getInt("total");
+        }
         Connection connexion2 = AccessBD.getConnection();
         int random_cons = ThreadLocalRandom.current().nextInt(1,many_cons);        
-        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient, idcons) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement insertion = connexion2.prepareStatement(sql);
         insertion.setString(1, client.getNom());
         insertion.setString(2, client.getPrenom());
@@ -59,6 +60,28 @@ public class ClientDao {
         insertion.setInt(5, random_cons);
         insertion.execute();
     }
+    
+    public static void editClientPassword(Client client, String new_pw) throws SQLException{
+        String sql_edit = "UPDATE Client SET passwordclient=? WHERE idclient=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement pw_edit = connexion.prepareStatement(sql_edit);
+        pw_edit.setString(1, new_pw);
+        pw_edit.setString(2, String.valueOf(client.getId()));
+        pw_edit.execute();
+    }
+    
+    /* Fonction pour changer l'avatar, pb de conversion Image<>Blob
+    
+    public static void editClientImage(Client client, Image new_pic) throws SQLException{
+        String sql_edit = "UPDATE Client SET photoclient=? WHERE idclient=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement pw_edit = connexion.prepareStatement(sql_edit);
+        pw_edit.setBlob(1, new_pic);
+        pw_edit.setString(2, String.valueOf(client.getId()));
+        pw_edit.execute();
+    }
+
+    */
 
     public static List<Client> getAllClients() throws SQLException {
         List<Client> result = new ArrayList<>();
