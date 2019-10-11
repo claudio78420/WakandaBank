@@ -38,24 +38,15 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link active" href="accueil">
-                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                    Accueil 
-                </button>
-                <span class="sr-only">(current)</span>
-            </a>
-            <a class="nav-item nav-link" href="#">
-                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                    Features 
-                </button>
-            </a>
-            <a class="nav-item nav-link" href="#">
-                <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                    Purchace 
-                </button>
-            </a>
 
 
+
+                <button onclick="location.href = 'inscription'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
+                        outline: 1; outline-color: goldenrod">
+
+                    S'inscrire
+
+                </button>
                 <button onclick="location.href = 'connexion'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
 
