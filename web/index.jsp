@@ -34,6 +34,9 @@
         <a class="navbar-brand" href="#">
                 
 
+                    <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+                        Wakanda Bank
+                    </button>
 
                     <button onclick="location.href = 'inscription'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
@@ -44,9 +47,6 @@
                         Se connecter
                      </button>
 
-                    <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                        Wakanda Bank
-                    </button>
 
             </div>
           </div>
