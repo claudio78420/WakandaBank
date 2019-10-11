@@ -1,6 +1,6 @@
 <%-- 
-    Document   : contactconseiller
-    Created on : 9 oct. 2019, 15:15:16
+    Document   : messageriecons
+    Created on : 11 oct. 2019, 09:51:31
     Author     : esic
 --%>
 
@@ -17,20 +17,21 @@
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
               integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     </head>
+
 <body class="backgroundgeneral">
         
         <div class="container">
 
-            <%@include file="toolbarleft.jsp" %>
+            <%@include file="toolbarleftconseiller.jsp" %>
 
-            <%@include file="toolbartop.jsp" %>
+            <%@include file="toolbartopconseiller.jsp" %>
         </div>
         
         <br>
         <div class="container backgroundcontainer" style="height: 2000px">
             <br>
             
-            <h1 style="text-align: center; color: white">Contacter son conseiller</h1>
+            <h1 style="text-align: center; color: white">Messagerie</h1>
             <br><br>
             
             
@@ -56,26 +57,7 @@
             </div>
             <br>
             <br>
-            <div class="col d-flex justify-content-center">
-                <div class="card text-center" style="width: 100%;
-                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                    <h2 class="card-img-top" alt=" " style="background: black; color: gold; padding-bottom: 3%"><br>Envoyer un mail<br></h2>
-                    <br>
-                    <div class="card-body">
-                        <form style="text-align: center">
-                            <h4>Entrez votre message ci-dessous :</h4>
-                            <br>
-                                <textarea rows = "5" cols = "120" name = "description"></textarea>
-                                <br><br>
-                                <button  class="btn btn-block" id="benvoyermail" style="width: 20%; margin: auto">
-                                    <a  href="mailto:claudio.rafael@hotmail.fr">Envoyer</a>
-                                </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
+
             
             
              <div class="col d-flex justify-content-center">
@@ -86,8 +68,12 @@
                     <div class="card-body">
                         <form style="text-align: center">
                             <br>
-                            <textarea rows = "5" cols = "120" name = "boitereception"></textarea>
-                            <br><br>
+                            <textarea rows = "5" cols = "120" name = "boitereception">
+                                    ${messagerie}
+                            </textarea>
+                                <br><br>
+
+
                         </form>
                     </div>
                 </div>
@@ -97,5 +83,6 @@
             
             
         </div>
+
     </body>
 </html>

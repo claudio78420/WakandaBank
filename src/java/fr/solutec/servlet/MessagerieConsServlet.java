@@ -6,12 +6,10 @@
 package fr.solutec.servlet;
 
 import fr.solutec.bean.Client;
-import fr.solutec.bean.Compte;
-import fr.solutec.dao.CompteDao;
+import fr.solutec.bean.Conseiller;
 import fr.solutec.dao.MessagerieDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "ContactConseillerServlet", urlPatterns = {"/contactconseiller"})
-public class ContactConseillerServlet extends HttpServlet {
+@WebServlet(name = "MessagerieConsServlet", urlPatterns = {"/messageriecons"})
+public class MessagerieConsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +41,10 @@ public class ContactConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ContactConseillerServlet</title>");            
+            out.println("<title>Servlet MessagerieConsServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ContactConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MessagerieConsServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,10 +62,14 @@ public class ContactConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
         
+        HttpSession session = request.getSession(true);
+        Conseiller c = (Conseiller) session.getAttribute("conseiller");   
+        String message ="";
         try {
-            request.getRequestDispatcher("WEB-INF/contactconseiller.jsp").forward(request, response);
+            message = MessagerieDao.getMessageCons(c.getId(), true);
+            request.setAttribute("messagerie", message);
+            request.getRequestDispatcher("WEB-INF/messageriecons.jsp").forward(request, response);
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println(e.getMessage());
@@ -88,26 +90,25 @@ public class ContactConseillerServlet extends HttpServlet {
         
         String mail = request.getParameter("message");
         HttpSession session = request.getSession(true);
-        Client c = (Client) session.getAttribute("client"); 
+        Conseiller c = (Conseiller) session.getAttribute("conseiller"); 
         if(c!=null){
             try {
-                MessagerieDao.insertMsg(c.getIdcons(), c.getId(), mail, true);
-                request.getRequestDispatcher("WEB-INF/contactconseiller.jsp").forward(request, response);
+                //appeler fonction qui remplit la table
+                request.getRequestDispatcher("WEB-INF/messageriecons.jsp").forward(request, response);
             } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());                
             }
         }
         else{
-            request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);        
+            request.getRequestDispatcher("WEB-INF/espaceconseiller.jsp").forward(request, response);        
+        
     }
     }
+
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
-
     @Override
     public String getServletInfo() {
         return "Short description";
