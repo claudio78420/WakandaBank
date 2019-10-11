@@ -45,14 +45,13 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Visuel sur vos comptes</h2>
                     <div class="card-body">
                         <br>
-
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Carte</th>
+                                        <th>Numéro de Compte</th>
+                                        <th>Numéro de Carte</th>
                                         <th>Solde</th>
-                                        <th>Découvert</th>
+                                        <th>Autorisation de Découvert</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -60,8 +59,8 @@
                                         <tr>
                                             <th scope="row">${l.id}</th>
                                             <td>${l.carte}</td>
-                                            <td>${l.solde}</td>
-                                            <td>${l.decouvert}</td>
+                                            <td>${l.solde}€</td>
+                                            <td>${l.decouvert}€</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

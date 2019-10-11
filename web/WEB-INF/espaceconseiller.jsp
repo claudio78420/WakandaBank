@@ -31,7 +31,7 @@
         
         <div class="container">
 
-
+            <%@include file="toolbarleftconseiller.jsp" %>
             <%@include file="toolbartopconseiller.jsp" %>
         </div>
         

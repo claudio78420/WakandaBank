@@ -92,13 +92,14 @@ CREATE TABLE IF NOT EXISTS `WakandaBank`.`Communication` (
   PRIMARY KEY (`idcomm`),
   CONSTRAINT `fk_Communication_Client`
     FOREIGN KEY (`idclient`)
-    REFERENCES `WakandaBank`.`Client` (`idclient`),
-  CONSTRAINT `fk_Communication_Conseiller`
-	FOREIGN KEY (`idcons`)
-	REFERENCES `WakandaBank`.`Conseiller` (`idcons`))
+    REFERENCES `WakandaBank`.`Client` (`idclient`))
+  -- CONSTRAINT `fk_Communication_Conseiller`
+-- 	FOREIGN KEY (`idcons`)
+-- 	REFERENCES `WakandaBank`.`Conseiller` (`idcons`))
 ENGINE = InnoDB;
 
-
+ALTER TABLE Communication
+ADD FOREIGN KEY (`idcons`) REFERENCES `WakandaBank`.`Conseiller` (`idcons`);
 -- -----------------------------------------------------
 -- Table `WakandaBank`.`Compte`
 -- -----------------------------------------------------
