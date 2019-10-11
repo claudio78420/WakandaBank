@@ -127,5 +127,21 @@ public class ConseillerDao {
         swap.setString(2, Integer.toString(cons.getId()));
         swap.execute();
     }
-
+    public static Conseiller getById(int id) throws SQLException {
+        
+        Conseiller resultat = null;
+        String sql = "SELECT * FROM Conseiller WHERE idcons=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement requette = connexion.prepareStatement(sql);
+        requette.setInt(1, id);
+        ResultSet rs = requette.executeQuery();
+        if (rs.next()) {
+            resultat = new Conseiller();
+            resultat.setId(rs.getInt("idcons"));
+            resultat.setNom(rs.getString("nomcons"));
+            resultat.setPrenom(rs.getString("prenomcons"));
+            resultat.setMail(rs.getString("mailcons"));
+        }
+        return resultat;
+    }
 }

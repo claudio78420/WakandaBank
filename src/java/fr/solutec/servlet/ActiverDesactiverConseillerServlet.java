@@ -5,10 +5,11 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
 import fr.solutec.bean.Conseiller;
-import fr.solutec.dao.ClientDao;
 import fr.solutec.dao.ConseillerDao;
+import fr.solutec.dao.MessagerieDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author esic
  */
-@WebServlet(name = "EspaceAdmin2Servlet", urlPatterns = {"/espaceadmin2"})
-public class EspaceAdmin2Servlet extends HttpServlet {
+@WebServlet(name = "ActiverDesactiverConseillerServlet", urlPatterns = {"/activerdesactiverconseiller"})
+public class ActiverDesactiverConseillerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +43,10 @@ public class EspaceAdmin2Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EspaceAdmin2Servlet</title>");            
+            out.println("<title>Servlet ActiverDesactiverConseillerServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EspaceAdmin2Servlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ActiverDesactiverConseillerServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,15 +64,9 @@ public class EspaceAdmin2Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         
-        try{
-            request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
-            
         
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
-        }
     }
 
     /**
@@ -88,24 +83,21 @@ public class EspaceAdmin2Servlet extends HttpServlet {
         
         
         HttpSession session = request.getSession(true);
-
-        Conseiller c = (Conseiller) session.getAttribute("admin");
-
-        if (c != null) {
+        Administrateur a = (Administrateur) session.getAttribute("conseiller"); 
+        if(a!=null){
             try {
-                ConseillerDao.editConseillerPassword(c, request.getParameter("mdp2"));
-                request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
+                Conseiller c = ConseillerDao.getById(Integer.parseInt(request.getParameter("inputid")));
+                ConseillerDao.switchCons(c);
+                request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
             } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println(e.getMessage());
-
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());                
             }
-
-        } else {
-            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
-            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
-
         }
+        else{
+            request.getRequestDispatcher("index.jsp").forward(request, response);        
+         }
+        
     }
 
     /**
