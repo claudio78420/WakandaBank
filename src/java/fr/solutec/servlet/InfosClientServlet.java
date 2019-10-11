@@ -65,10 +65,14 @@ public class InfosClientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/infosclient.jsp").forward(request, response);
         
-
-        HttpSession session = request.getSession(true);
+        try{
+            request.getRequestDispatcher("WEB-INF/infosclient.jsp").forward(request, response);
+        
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());
+        }
 
     }
 
@@ -87,13 +91,16 @@ public class InfosClientServlet extends HttpServlet {
         
         HttpSession session2 = request.getSession(true);
 
-        Client c2 = (Client) session2.getAttribute("client2");
+        Client c2 = (Client) session2.getAttribute("client");
 
         if (c2 != null) {
             try {
                 ClientDao.editClientPassword(c2,request.getParameter("client2mdp"));
                 request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
             } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println(e.getMessage());
+
             }
 
         } else {

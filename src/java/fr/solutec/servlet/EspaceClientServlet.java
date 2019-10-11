@@ -74,10 +74,12 @@ public class EspaceClientServlet extends HttpServlet {
         
         if(c!=null){
             try {
-            List<Compte> comptes = CompteDao.getComptesClient(c);
-            request.setAttribute("listecomptes", comptes);
-            request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
+                List<Compte> comptes = CompteDao.getComptesClient(c);
+                request.setAttribute("listecomptes", comptes);
+                request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
             } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println(e.getMessage());
             }
         }
         else{
