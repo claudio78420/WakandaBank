@@ -55,8 +55,6 @@
                                         <th>Découvert</th>
                                     </tr>
                                 </thead>
-
-
                                 <tbody>
                                     <c:forEach items="${listecomptes}" var="l">
                                         <tr>
@@ -76,21 +74,6 @@
             <br>
             <br>
             <br>
-            
-          
-            
-
-
-
-
-            
-            
         </div>
-        
-        
-        
-        
-        
-
     </body>
 </html>
