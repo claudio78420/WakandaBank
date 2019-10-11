@@ -6,6 +6,7 @@
 package fr.solutec.dao;
 
 import fr.solutec.bean.Client;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,6 +59,28 @@ public class ClientDao {
         insertion.setInt(5, random_cons);
         insertion.execute();
     }
+    
+    public static void editClientPassword(Client client, String new_pw) throws SQLException{
+        String sql_edit = "UPDATE Client SET passwordclient=? WHERE idclient=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement pw_edit = connexion.prepareStatement(sql_edit);
+        pw_edit.setString(1, new_pw);
+        pw_edit.setString(2, String.valueOf(client.getId()));
+        pw_edit.execute();
+    }
+    
+    /* Fonction pour changer l'avatar, pb de conversion Image<>Blob
+    
+    public static void editClientImage(Client client, Image new_pic) throws SQLException{
+        String sql_edit = "UPDATE Client SET photoclient=? WHERE idclient=?";
+        Connection connexion = AccessBD.getConnection();
+        PreparedStatement pw_edit = connexion.prepareStatement(sql_edit);
+        pw_edit.setBlob(1, new_pic);
+        pw_edit.setString(2, String.valueOf(client.getId()));
+        pw_edit.execute();
+    }
+
+    */
 
     public static List<Client> getAllClients() throws SQLException {
         List<Client> result = new ArrayList<>();
