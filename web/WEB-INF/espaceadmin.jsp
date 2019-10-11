@@ -60,18 +60,24 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Mail</th>
-                                    <th>Modifier</th>
+                                    <th>Mot de passe</th>
+                                    <th>Désactiver</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${listeconseillersactives}" var="m">
                                     <tr>
-                                        <th scope="row">${m.id}</th>
-                                        <td>${m.nom}</td>
-                                        <td>${m.prenom}</td>
-                                        <td>${m.mail}</td>
-                                        <td><button name="${m.id}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Modifier</button></td>
-                                    </tr>
+                                
+                                        <th scope="row"><input value="${m.id}" name="inputid"></th>
+                                        <td><input value="${m.nom}" name="inputnom"></td>
+                                        <td><input value="${m.prenom}" name="inputprenom"></td>
+                                        <td><input value="${m.mail}" name="inputmail"></td>
+                                        
+                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
+                                <form action ="activerdesactiverconseiller" method="POST" class='text-center'>
+                                        <td><button type="submit" class="btn btn-primary" style="color: goldenrod">Désactiver</button></td>
+                                  </form>
+                                </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
@@ -103,17 +109,19 @@
                                     <th>Nom</th>
                                     <th>Prénom</th>
                                     <th>Mail</th>
-                                    <th>Modifier</th>
+                                    <th>Mot de passe</th>
+                                    <th>Activer</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${listeconseillersdesactives}" var="p">
                                     <tr>
-                                        <th scope="row">${p.id}</th>
-                                        <td>${p.nom}</td>
-                                        <td>${p.prenom}</td>
-                                        <td>${p.mail}</td>
-                                        <td><button name="${p.id}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Modifier</button></td>
+                                        <th scope="row"><input value="${p.id}" name="inputid2"></th>
+                                        <td><input value="${p.nom}" name="inputnom2"></td>
+                                        <td><input value="${p.prenom}" name="inputprenom2"></td>
+                                        <td><input value="${p.mail}" name="inputmail2"></td>
+                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
+                                        <td><button class="btn btn-primary" style="color: goldenrod">Activer</button></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -130,7 +138,7 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="color: goldenrod">Ajouter conseiller</button>
                         
                         
-                        <!-- Modal 1 -->
+                        <!-- Modal 1 Créer Conseiller -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -192,7 +200,7 @@
                         
                         
                         
-                        <!-- Modal 2 -->
+                        <!-- Modal 2 Changer mdp conseiller -->
                         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -206,45 +214,21 @@
                                   
                                 <div class="card text-center" style="width: 100%;
                                  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                                <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier un compte conseiller</h2>
+                                <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier mot de passe</h2>
                                 <div class="card-body text-center"> 
                                     <form action ="espaceadmin2" method="POST" class='text-center'>
-                                        <div class="form-group text-center">
-                                            <input type="email" placeholder="mail"
-                                                   required="" name="mail" class="form-control text-center" value="${conseillerchoisi.mail}">
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="nom"
-                                                   required="" name="nom" class="form-control text-center" value="${conseillerchoisi.nom}">
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="prénom"
-                                                   required="" name="prenom" class="form-control text-center" value="${conseillerchoisi.prenom}">
-                                        </div>
+
                                         <br>
                                         <div class="form-group">
                                             <input type="password" placeholder="mot de passe"
                                                    required="" name="mdp2" class="form-control text-center">
                                         </div>
                                         <br>           
-        <div class="container">                                        
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <div class="input-group-text">
-        <input type="checkbox">
-    <p>Activé</p>
-    </div>
-  </div>
-</div>
-            </div>
                                         
                                         <br>
 
                                     </div>
                                 </div>
-                                  
                                   
                               </div>
                               <div class="modal-footer">
@@ -254,10 +238,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
-                        
-                                    
-                                    
+                        </div> 
                                     
                     </div>
                 </div>
