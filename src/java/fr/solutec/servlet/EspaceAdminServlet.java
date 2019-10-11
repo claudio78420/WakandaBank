@@ -70,9 +70,11 @@ public class EspaceAdminServlet extends HttpServlet {
 
         if (a != null) {
             try {
-                List<Conseiller> conseillers = ConseillerDao.getAllCons();
+                List<Conseiller> conseillersactives = ConseillerDao.getActiveCons();
+                List<Conseiller> conseillersdesactives = ConseillerDao.getDisabledCons();
                 request.setAttribute("administrateur", a);
-                request.setAttribute("listeconseillers", conseillers);
+                request.setAttribute("listeconseillersactives", conseillersactives);
+                request.setAttribute("listeconseillersdesactives", conseillersdesactives);
                 request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
             } catch (Exception e) {
             }
@@ -95,6 +97,21 @@ public class EspaceAdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String mail = request.getParameter("mail");
+        String mdp = request.getParameter("mdp");
+        
+        Conseiller co = new Conseiller(nom, prenom, mail, mdp);
+        
+        try {
+            ConseillerDao.insertConnseiller(co);
+            response.sendRedirect("espaceadmin");
+        } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());            
+        }
 
     }
 
