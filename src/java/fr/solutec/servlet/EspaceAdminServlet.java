@@ -11,6 +11,8 @@ import fr.solutec.bean.Conseiller;
 import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -99,14 +101,25 @@ public class EspaceAdminServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String mail = request.getParameter("mail");
-        String mdp = request.getParameter("mdp");
+        byte[] ptext = nom.getBytes(ISO_8859_1);
+        String nomValUtf = new String(ptext, UTF_8);
         
-        Conseiller co = new Conseiller(nom, prenom, mail, mdp);
+        String prenom = request.getParameter("prenom");
+        byte[] pptext = prenom.getBytes(ISO_8859_1);
+        String prenomValUtf = new String(pptext, UTF_8);
+        
+        String mail = request.getParameter("mail");
+        byte[] ppptext = mail.getBytes(ISO_8859_1);
+        String mailValUtf = new String(ppptext, UTF_8);
+        
+        String mdp = request.getParameter("mdp");
+        byte[] pppptext = mdp.getBytes(ISO_8859_1);
+        String mdpValUtf = new String(pppptext, UTF_8);
+        
+        Conseiller co = new Conseiller(nomValUtf, prenomValUtf, mailValUtf, mdpValUtf);
         
         try {
-            ConseillerDao.insertConnseiller(co);
+            ConseillerDao.insertConseiller(co);
             response.sendRedirect("espaceadmin");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();

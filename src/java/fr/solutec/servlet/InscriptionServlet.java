@@ -9,6 +9,10 @@ import fr.solutec.bean.Client;
 import fr.solutec.dao.ClientDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import static java.nio.charset.StandardCharsets.UTF_8;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +43,7 @@ public class InscriptionServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InscriptionServlet</title>");            
+            out.println("<title>Servlet InscriptionServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet InscriptionServlet at " + request.getContextPath() + "</h1>");
@@ -74,22 +78,34 @@ public class InscriptionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String nom = request.getParameter("nom");
+        byte[] ptext = nom.getBytes(ISO_8859_1);
+        String nomValUtf = new String(ptext, UTF_8);
+
         String prenom = request.getParameter("prenom");
+        byte[] pptext = prenom.getBytes(ISO_8859_1);
+        String prenomValUtf = new String(pptext, UTF_8);
+        
         String mail = request.getParameter("mail");
+        byte[] ppptext = mail.getBytes(ISO_8859_1);
+        String mailValUtf = new String(ppptext, UTF_8);
+        
         String mdp = request.getParameter("mdp");
-        
-        Client c = new Client(nom, prenom, mail, mdp);
-        
+        byte[] pppptext = mdp.getBytes(ISO_8859_1);
+        String mdpValUtf = new String(pppptext, UTF_8);
+
+        Client c = new Client(nomValUtf, prenomValUtf, mailValUtf, mdpValUtf);
+
         try {
             ClientDao.insertClient(c);
             request.getSession(true).setAttribute("client", c);
             response.sendRedirect("espaceclient");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
-            out.println(e.getMessage());            
+            out.println(e.getMessage());
         }
-{
+        {
         }
     }
 
