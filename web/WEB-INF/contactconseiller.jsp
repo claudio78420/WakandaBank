@@ -42,18 +42,15 @@
                        <form style="text-align: center">
                             <h4>Entrez votre message ci-dessous :</h4>
                             <br>
-                                <textarea rows = "5" cols = "120" name = "description"></textarea>
-                                <br><br>
-                                <button class="btn btn-primary btn-block" id="benvoyermessage" style="width: 20%; margin: auto">Envoyer</button>
-                           
+                            <textarea rows = "5" cols = "120" name = "description"></textarea>
+                            <br><br>
+                            <button class="btn btn-primary btn-block" id="benvoyermessage" style="width: 20%; margin: auto" type = "submit">Envoyer</button>
                         </form>
                     </div>
                 </div>
             </div>
             <br>
             <br>
-            
-            
             <div class="col d-flex justify-content-center">
                 <div class="card text-center" style="width: 100%;
                      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
@@ -66,30 +63,14 @@
                                 <textarea rows = "5" cols = "120" name = "description"></textarea>
                                 <br><br>
                                 <button  class="btn btn-block" id="benvoyermail" style="width: 20%; margin: auto">
-                                <a  href="mailto:claudio.rafael@hotmail.fr">Envoyer</a>
-                                    </button>
-                           
+                                    <a  href="mailto:claudio.rafael@hotmail.fr">Envoyer</a>
+                                </button>
                         </form>
                     </div>
                 </div>
             </div>
             <br>
             <br>
-            
-          
-            
-
-
-
-
-            
-            
         </div>
-        
-        
-        
-        
-        
-
     </body>
 </html>

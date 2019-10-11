@@ -48,25 +48,25 @@
                             <div>
                                 <h5>Nom :</h5>
                                 <br>
-                                <input type="text" id="auto" class="form-control text-center" placeholder="Nom" value="${client.nom}">
+                                <input type="text" id="client2nom" class="form-control text-center" placeholder="Nom" value="${client.nom}">
                             </div>
                             <br><br>
                             <div>
                                 <h5>Prénom :</h5>
                                 <br>
-                                <input type="text" id="auto" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
+                                <input type="text" id="client2prenom" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
                             </div>
                             <br><br>
                             <div>
                                 <h5>Mail :</h5>
                                 <br>
-                                <input type="text" id="auto" class="form-control text-center" placeholder="Mail" value="${client.mail}">
+                                <h3 type="text" id="client2mail" class="form-control text-center" placeholder="Mail" value="${client.mail}"></h3>
                             </div>
                             <br><br>
                             <div>
                                 <h5>Password :</h5>
                                 <br>
-                                <input type="text" id="auto" class="form-control text-center" placeholder="Mot de passe">
+                                <input type="text" id="client2mdp" class="form-control text-center" placeholder="Mot de passe">
                             </div>
                             <br><br>
                             <div>
