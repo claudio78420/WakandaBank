@@ -8,6 +8,7 @@ package fr.solutec.servlet;
 import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
 import fr.solutec.bean.Conseiller;
+import fr.solutec.dao.ClientDao;
 import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -90,9 +91,7 @@ public class InfosClientServlet extends HttpServlet {
 
         if (c2 != null) {
             try {
-                List<Conseiller> conseillersdesactives = ConseillerDao.getDisabledCons();
-                c2.setPassword(request.getParameter("client2mdp"));
-                request.setAttribute("listeconseillersdesactives", conseillersdesactives);
+                ClientDao.editClientPassword(c2,request.getParameter("client2mdp"));
                 request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
             } catch (Exception e) {
             }
