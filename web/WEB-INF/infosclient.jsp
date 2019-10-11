@@ -48,6 +48,13 @@
                             <div>
                                 <h5>Avatar :</h5>
                                 <br>
+                                <form enctype="multipart/form-data" action="/upload/image" method="post">
+                                    <input id="image-file" name="newAvatar" type="file">
+                                </form>
+                            </div>
+                            <div>
+                                <h5>Avatar :</h5>
+                                <br>
                                 <img align="center" src="" width="50%">
                                 <button class="btn btn-primary btn-block" style="display: inline">Changer avatar</button>
                             </div>
