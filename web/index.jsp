@@ -32,23 +32,29 @@
         
       <nav class="navbar navbar-expand-lg" style="background-color: black; color: goldenrod">  
         <a class="navbar-brand" href="#">
-                
+            <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
+                Wakanda Bank
+            </button>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
 
-                    <button class ="btn btn-primary" style="color: goldenrod; background-color: black">
-                        Wakanda Bank
-                    </button>
 
-                    <button onclick="location.href = 'inscription'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
+
+                <button onclick="location.href = 'inscription'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
-                        S'inscrire
-                    </button>
-                    <button onclick="location.href = 'connexion'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
+
+                    S'inscrire
+
+                </button>
+                <button onclick="location.href = 'connexion'" class="btn btn-primary my-2 my-sm-0" style="color: goldenrod; background-color: black;
                         outline: 1; outline-color: goldenrod">
-                        Se connecter
-                     </button>
+
+                    Se connecter
+
+                </button>
 
 
-            </div>
           </div>
         </div>
       </nav>
