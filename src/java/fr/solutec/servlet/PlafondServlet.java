@@ -5,13 +5,18 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Client;
+import fr.solutec.bean.Compte;
+import fr.solutec.dao.CompteDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -60,12 +65,26 @@ public class PlafondServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         
-        try {
+        HttpSession session = request.getSession(true);
+        
+        Client c = (Client) session.getAttribute("client");
+        
+        if(c!=null){
+            try {
+            List<Compte> comptes = CompteDao.getComptesClient(c);
+            request.setAttribute("listecomptes", comptes);
             request.getRequestDispatcher("WEB-INF/plafond.jsp").forward(request, response);
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println(e.getMessage());
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println(e.getMessage());
+            }
         }
+        else{
+            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
+            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+
+        }
+        
     }
 
     /**
@@ -79,7 +98,7 @@ public class PlafondServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
