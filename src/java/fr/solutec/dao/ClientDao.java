@@ -45,6 +45,7 @@ public class ClientDao {
         Connection connexion = AccessBD.getConnection();
         PreparedStatement comptage = connexion.prepareStatement(sql_cons);
         ResultSet rs = comptage.executeQuery();
+        rs.next();
         many_cons = rs.getInt("total");
         Connection connexion2 = AccessBD.getConnection();
         int random_cons = ThreadLocalRandom.current().nextInt(1,many_cons);        
