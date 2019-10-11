@@ -5,9 +5,13 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
+import fr.solutec.bean.Conseiller;
+import fr.solutec.dao.ConseillerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,7 +82,28 @@ public class InfosClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        
+        HttpSession session2 = request.getSession(true);
+
+        Client c2 = (Client) session2.getAttribute("client2");
+
+        if (c2 != null) {
+            try {
+                List<Conseiller> conseillersdesactives = ConseillerDao.getDisabledCons();
+                c2.setPassword(request.getParameter("client2mdp"));
+                request.setAttribute("listeconseillersdesactives", conseillersdesactives);
+                request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
+            } catch (Exception e) {
+            }
+
+        } else {
+            request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
+            request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
+
+        }
+        
+        
     }
 
     /**
