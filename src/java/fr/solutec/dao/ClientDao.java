@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -46,11 +45,12 @@ public class ClientDao {
         Connection connexion = AccessBD.getConnection();
         PreparedStatement comptage = connexion.prepareStatement(sql_cons);
         ResultSet rs = comptage.executeQuery();
-        rs.next();
-        many_cons = rs.getInt("total");
+        if (rs.next()){
+            many_cons = rs.getInt("total");
+        }
         Connection connexion2 = AccessBD.getConnection();
         int random_cons = ThreadLocalRandom.current().nextInt(1,many_cons);        
-        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Client (nomclient, prenomclient, mailclient, passwordclient, idcons) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement insertion = connexion2.prepareStatement(sql);
         insertion.setString(1, client.getNom());
         insertion.setString(2, client.getPrenom());
