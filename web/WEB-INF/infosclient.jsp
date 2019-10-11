@@ -44,23 +44,30 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier vos données</h2>
                     <div class="card-body">
                         <br>
+                        
+                            <div>
+                                <h5>Avatar :</h5>
+                                <br>
+                                <img align="center" src="" width="50%">
+                                <button class="btn btn-primary btn-block" style="display: inline">Changer avatar</button>
+                            </div>
                             
                             <div>
                                 <h5>Nom :</h5>
                                 <br>
-                                <input type="text" id="client2nom" class="form-control text-center" placeholder="Nom" value="${client.nom}">
+                                <h6 class="text-center" placeholder="Mail">${client.nom}</h6>
                             </div>
                             <br><br>
                             <div>
                                 <h5>Prénom :</h5>
                                 <br>
-                                <input type="text" id="client2prenom" class="form-control text-center" placeholder="Prénom" value="${client.prenom}">
+                                <h6 class="text-center" placeholder="Mail">${client.prenom}</h6>
                             </div>
                             <br><br>
                             <div>
                                 <h5>Mail :</h5>
                                 <br>
-                                <h3 type="text" id="client2mail" class="form-control text-center" placeholder="Mail" value="${client.mail}"></h3>
+                                <h6 class="text-center" placeholder="Mail">${client.mail}</h6>
                             </div>
                             <br><br>
                             <div>
