@@ -35,6 +35,7 @@ public class ClientDao {
             resultat.setNom(rs.getString("nomclient"));
             resultat.setPrenom(rs.getString("prenomclient"));
             resultat.setMail(rs.getString("mailclient"));
+            resultat.setIdcons(rs.getInt("idcons"));
         }
         return resultat;
     }

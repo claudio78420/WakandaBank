@@ -5,13 +5,19 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Client;
+import fr.solutec.bean.Compte;
+import fr.solutec.dao.CompteDao;
+import fr.solutec.dao.MessagerieDao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -79,14 +85,29 @@ public class ContactConseillerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String mail = request.getParameter("message");
+        HttpSession session = request.getSession(true);
+        Client c = (Client) session.getAttribute("client"); 
+        if(c!=null){
+            try {
+                MessagerieDao.insertMsg(c.getIdcons(), c.getId(), mail, true);
+                request.getRequestDispatcher("WEB-INF/contactconseiller.jsp").forward(request, response);
+            } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());                
+            }
+        }
+        else{
+            request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);        
     }
-
+    }
     /**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description
      */
+
     @Override
     public String getServletInfo() {
         return "Short description";

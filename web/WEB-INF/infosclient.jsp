@@ -44,13 +44,14 @@
                     <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier vos données</h2>
                     <div class="card-body">
                         <br>
-                        
+                        <form action ="mesinfos" method="POST">
                             <div>
                                 <h5>Avatar :</h5>
                                 <br>
                                 <img align="center" src="" width="50%">
                                 <button class="btn btn-primary btn-block" style="display: inline">Changer avatar</button>
                             </div>
+                            <br><br>
                             
                             <div>
                                 <h5>Nom :</h5>
@@ -73,16 +74,17 @@
                             <div>
                                 <h5>Password :</h5>
                                 <br>
-                                <input type="text" id="client2mdp" class="form-control text-center" placeholder="Mot de passe">
+                                <input type="text" name="client2mdp" class="form-control text-center" placeholder="Mot de passe">
                             </div>
                             <br><br>
                             <div>
                                 
-                                <button type="submit" class="btn btn-primary btn-block" id="validerinfos">Enregistrer</button>
+                                <button type="submit" class="btn btn-primary btn-block" id="validerinfos">Modifier mot de passe</button>
 
                             </div>
                         
                                 
+                        </form>
                                
                 
 
