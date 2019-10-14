@@ -65,7 +65,7 @@ public class ActiverDesactiverConseillerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
+        request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
         
     }
 
@@ -83,12 +83,15 @@ public class ActiverDesactiverConseillerServlet extends HttpServlet {
         
         
         HttpSession session = request.getSession(true);
-        Administrateur a = (Administrateur) session.getAttribute("conseiller"); 
+        Administrateur a = (Administrateur) session.getAttribute("administrateur"); 
         if(a!=null){
             try {
-                Conseiller c = ConseillerDao.getById(Integer.parseInt(request.getParameter("inputid")));
+                String idd = request.getParameter("inputid");
+                int idI = Integer.parseInt(idd);
+                
+                Conseiller c = ConseillerDao.getById(idI);
                 ConseillerDao.switchCons(c);
-                request.getRequestDispatcher("WEB-INF/espaceadmin.jsp").forward(request, response);
+                response.sendRedirect("espaceadmin");
             } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.println(e.getMessage());                
@@ -97,6 +100,8 @@ public class ActiverDesactiverConseillerServlet extends HttpServlet {
         else{
             request.getRequestDispatcher("index.jsp").forward(request, response);        
          }
+        
+
         
     }
 

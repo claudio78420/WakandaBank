@@ -19,4 +19,17 @@
         <servlet-name>ConnexionServlet</servlet-name>        
         <url-pattern>/connexion</url-pattern>
     </servlet-mapping>
+    
+    <!--
+    <servlet>
+        <servlet-name>ActiverDesactiverConseillerServlet</servlet-name>
+        <servlet-class>fr.solutec.servlet.ActiverDesactiverConseillerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActiverDesactiverConseillerServlet</servlet-name>        
+        <url-pattern>/espaceadmin</url-pattern>
+    </servlet-mapping>
+    -->
+    
+    
 </web-app>

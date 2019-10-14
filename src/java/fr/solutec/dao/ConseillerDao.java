@@ -39,7 +39,7 @@ public class ConseillerDao {
     }
 
     public static void insertConseiller(Conseiller cons) throws SQLException {
-        String sql = "INSERT INTO Conseiller (nomcons, prenomcons, mailcons, passwordcons) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Conseiller (nomcons, prenomcons, mailcons, passwordcons, statutcons) VALUES (?, ?, ?, ?, 0)";
         Connection connexion = AccessBD.getConnection();
         PreparedStatement requette = connexion.prepareStatement(sql);
         requette.setString(1, cons.getNom());
@@ -116,10 +116,12 @@ public class ConseillerDao {
         interro.setString(1, Long.toString(cons.getId()));
         ResultSet rs = interro.executeQuery();
         String new_status = "";
-        if (rs.getBoolean("status")){
-            new_status = "FALSE";
-         }else{
-            new_status = "TRUE";
+        if (rs.next()){
+            if (rs.getBoolean("status")){
+                new_status = "0";
+             }else{
+                new_status = "1";
+            }
         }
         String sql_swap = "UPDATE Conseiller SET statutcons=? WHERE idcons=?";
         PreparedStatement swap = connexion.prepareStatement(sql_swap);

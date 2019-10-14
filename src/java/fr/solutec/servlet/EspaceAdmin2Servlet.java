@@ -5,6 +5,7 @@
  */
 package fr.solutec.servlet;
 
+import fr.solutec.bean.Administrateur;
 import fr.solutec.bean.Client;
 import fr.solutec.bean.Conseiller;
 import fr.solutec.dao.ClientDao;
@@ -87,7 +88,7 @@ public class EspaceAdmin2Servlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        HttpSession session = request.getSession(true);
+        /*HttpSession session = request.getSession(true);
 
         Conseiller c = (Conseiller) session.getAttribute("admin");
 
@@ -105,7 +106,36 @@ public class EspaceAdmin2Servlet extends HttpServlet {
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");
             request.getRequestDispatcher("WEB-INF/connexion.jsp").forward(request, response);
 
+        }*/
+        
+        
+                
+        HttpSession session = request.getSession(true);
+        Administrateur a = (Administrateur) session.getAttribute("administrateur"); 
+        if(a!=null){
+            try {
+                String idd = request.getParameter("idrecup");
+                int idI = Integer.parseInt(idd);
+                
+                Conseiller c = ConseillerDao.getById(idI);
+                
+                ConseillerDao.editConseillerPassword(c, request.getParameter("mdp2"));
+                response.sendRedirect("espaceadmin");
+            } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println(e.getMessage());                
+            }
         }
+        else{
+            request.getRequestDispatcher("index.jsp").forward(request, response);        
+         }
+        
+        
+        
+        
+        
+        
+        
     }
 
     /**

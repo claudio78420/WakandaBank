@@ -30,7 +30,26 @@
 
 
     <body class="backgroundgeneral">
-        
+
+        <script>
+            function recupVal(inputid) {
+                document.querySelector('#inputid').value = inputid;
+
+                console.log('test recup', inputid);
+            }
+
+            function recp() {
+                var val = document.querySelector('#inputid').value;
+                console.log('val ' , val);
+                document.querySelector('#idrecup').value = val;
+            }
+
+
+
+        </script>
+
+
+
         <div class="container">
 
             <%@include file="toolbartopadmin.jsp" %>
@@ -38,7 +57,7 @@
         <br>
         <div class="container backgroundcontainer">
             <br>
-            
+
             <h1 style="text-align: center; color: white">Gestion des conseillers</h1>
             <br><br>
 
@@ -66,19 +85,20 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${listeconseillersactives}" var="m">
-                                    <tr>
-                                
-                                        <th scope="row"><input value="${m.id}" name="inputid"></th>
-                                        <td><input value="${m.nom}" name="inputnom"></td>
-                                        <td><input value="${m.prenom}" name="inputprenom"></td>
-                                        <td><input value="${m.mail}" name="inputmail"></td>
-                                        
-                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
                                 <form action ="activerdesactiverconseiller" method="POST" class='text-center'>
-                                        <td><button type="submit" class="btn btn-primary" style="color: goldenrod">Désactiver</button></td>
-                                  </form>
-                                </tr>
-                                </c:forEach>
+                                    <tr>
+
+                                        <th scope="row">${m.id}</th>
+                                    <input type="hidden" id="inputid" value="${m.id}" name="inputid">
+                                    <td>${m.nom}</td>
+                                    <td>${m.prenom}</td>
+                                    <td>${m.mail}</td>
+
+                                    <td><button type="button" onclick="recupVal(${m.id})" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
+                                    <td><button type="submit" class="btn btn-primary" style="color: goldenrod">Désactiver</button></td>
+                                    </tr>
+                                </form>
+                            </c:forEach>
                             </tbody>
                         </table>
 
@@ -115,148 +135,152 @@
                             </thead>
                             <tbody>
                                 <c:forEach items="${listeconseillersdesactives}" var="p">
+                                <form action ="activerdesactiverconseiller" method="POST" class='text-center'>
                                     <tr>
-                                        <th scope="row"><input value="${p.id}" name="inputid2"></th>
-                                        <td><input value="${p.nom}" name="inputnom2"></td>
-                                        <td><input value="${p.prenom}" name="inputprenom2"></td>
-                                        <td><input value="${p.mail}" name="inputmail2"></td>
-                                        <td><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
-                                        <td><button class="btn btn-primary" style="color: goldenrod">Activer</button></td>
+                                        <th scope="row">${p.id}</th>
+                                    <input type="hidden" value="${p.id}" name="inputid">
+                                    <td>${p.nom}</td>
+                                    <td>${p.prenom}</td>
+                                    <td>${p.mail}</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="color: goldenrod">Changer mot de passe</button></td>
+                                    <td><button class="btn btn-primary" style="color: goldenrod">Activer</button></td>
                                     </tr>
-                                </c:forEach>
+                                </form>
+                            </c:forEach>
                             </tbody>
                         </table>
 
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
 
 
                         <!-- Trigger/Open The Modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="color: goldenrod">Ajouter conseiller</button>
-                        
-                        
+
+
                         <!-- Modal 1 Créer Conseiller -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                
-                                  
-                                  
-                                <div class="card text-center" style="width: 100%;
-                                 box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                                <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Créer un compte conseiller</h2>
-                                <div class="card-body text-center"> 
-                                    <form action ="espaceadmin" method="POST" class='text-center'>
-                                        <div class="form-group text-center">
-                                            <input type="email" placeholder="mail"
-                                                   required="" name="mail" class="form-control text-center">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+
+                                        <div class="card text-center" style="width: 100%;
+                                             box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                                            <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Créer un compte conseiller</h2>
+                                            <div class="card-body text-center"> 
+                                                <form action ="espaceadmin" method="POST" class='text-center'>
+                                                    <div class="form-group text-center">
+                                                        <input type="email" placeholder="mail"
+                                                               required="" name="mail" class="form-control text-center">
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="nom"
+                                                               required="" name="nom" class="form-control text-center">
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="prénom"
+                                                               required="" name="prenom" class="form-control text-center">
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <input type="password" placeholder="mot de passe"
+                                                               required="" name="mdp" class="form-control text-center">
+                                                    </div>
+                                                    <br>
+
+                                                    </div>
+                                                    </div>
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary" style="color: goldenrod">Créer</button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="nom"
-                                                   required="" name="nom" class="form-control text-center">
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="prénom"
-                                                   required="" name="prenom" class="form-control text-center">
-                                        </div>
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="password" placeholder="mot de passe"
-                                                   required="" name="mdp1" class="form-control text-center">
-                                        </div>
-                                        <br>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+                                <!-- Modal 2 Changer mdp conseiller -->
+                                <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <div class="card text-center" style="width: 100%;
+                                                     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
+                                                    <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier mot de passe</h2>
+                                                    <div class="card-body text-center"> 
+                                                        <form action ="espaceadmin2" method="POST" class='text-center'>
+
+                                                            <br>
+                                                            <div class="form-group">
+                                                                <input type="hidden" id="idrecup" name="idrecup" value="" >
+                                                                <input type="password" placeholder="mot de passe"
+                                                                       required="" name="mdp2" class="form-control text-center">
+                                                            </div>
+                                                            <br>           
+
+                                                            <br>
+
+                                                            </div>
+                                                            </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" onclick="recp()" class="btn btn-primary" style="color: goldenrod">Modifier</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
 
                                     </div>
                                 </div>
-                                  
-                                  
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" style="color: goldenrod">Créer</button>
-                                </form>
-                              </div>
                             </div>
-                          </div>
+                            <br>
+                            <br>
+
+
+
+                            <br>
+                            <br>
+
+
+
+
+
+
                         </div>
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <!-- Modal 2 Changer mdp conseiller -->
-                        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                
-                                  
-                                <div class="card text-center" style="width: 100%;
-                                 box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30)">
-                                <h2 class="card-img-top" alt="" style="background: black; color: gold; padding-bottom: 3%"><br>Modifier mot de passe</h2>
-                                <div class="card-body text-center"> 
-                                    <form action ="espaceadmin2" method="POST" class='text-center'>
-
-                                        <br>
-                                        <div class="form-group">
-                                            <input type="password" placeholder="mot de passe"
-                                                   required="" name="mdp2" class="form-control text-center">
-                                        </div>
-                                        <br>           
-                                        
-                                        <br>
-
-                                    </div>
-                                </div>
-                                  
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" style="color: goldenrod">Modifier</button>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div> 
-                                    
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-
-
-
-            <br>
-            <br>
-
-
-
-
-
-
-        </div>
 
 
 
@@ -266,5 +290,5 @@
 
 
 
-    </body>
-</html>
+                        </body>
+                        </html>
