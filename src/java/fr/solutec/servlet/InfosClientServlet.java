@@ -94,14 +94,22 @@ public class InfosClientServlet extends HttpServlet {
         Client c2 = (Client) session2.getAttribute("client");
 
         if (c2 != null) {
-            try {
-                ClientDao.editClientPassword(c2,request.getParameter("client2mdp"));
-                request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
-            } catch (Exception e) {
-                PrintWriter out = response.getWriter();
-                out.println(e.getMessage());
-
-            }
+            /*if (){
+                try {
+                    ClientDao.editClientPassword(c2,request.getParameter("client2mdp"));
+                    request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
+                } catch (Exception e) {
+                    PrintWriter out = response.getWriter();
+                    out.println(e.getMessage());
+                }
+            }else if (){    
+               */try {
+                    ClientDao.editClientPassword(c2,request.getParameter("client2mdp"));
+                    request.getRequestDispatcher("WEB-INF/espaceclient.jsp").forward(request, response);
+                } catch (Exception e) {
+                    PrintWriter out = response.getWriter();
+                    out.println(e.getMessage());
+                }
 
         } else {
             request.setAttribute("msg", "Allez voir ailleurs, ce n'est pas un site de l'État.");

@@ -5,6 +5,8 @@
  */
 package fr.solutec.bean;
 
+import static java.lang.Math.abs;
+
 /**
  *
  * @author stagiaire
@@ -25,7 +27,7 @@ public class Compte {
         this.carte = carte;
         this.statut = statut;
         this.solde = solde;
-        this.decouvert = decouvert;
+        this.decouvert = -1 * abs(decouvert);
         this.id_client = id_client;
     }
 
